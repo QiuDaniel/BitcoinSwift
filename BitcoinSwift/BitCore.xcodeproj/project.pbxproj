@@ -120,6 +120,8 @@
 		65DD5EF62785704F002C9CA0 /* OP_VERIF.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65DD5EF52785704F002C9CA0 /* OP_VERIF.swift */; };
 		65DD5EF827857092002C9CA0 /* OP_VERIFY.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65DD5EF727857092002C9CA0 /* OP_VERIFY.swift */; };
 		65DD5EFA278570AB002C9CA0 /* OP_VERNOTIF.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65DD5EF9278570AB002C9CA0 /* OP_VERNOTIF.swift */; };
+		65DD5EFD2785713C002C9CA0 /* OP_CHECKLOCKTIMEVERIFY.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65DD5EFC2785713C002C9CA0 /* OP_CHECKLOCKTIMEVERIFY.swift */; };
+		65DD5EFF2785722B002C9CA0 /* OP_CHECKSEQUENCEVERIFY.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65DD5EFE2785722B002C9CA0 /* OP_CHECKSEQUENCEVERIFY.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -248,6 +250,8 @@
 		65DD5EF52785704F002C9CA0 /* OP_VERIF.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OP_VERIF.swift; sourceTree = "<group>"; };
 		65DD5EF727857092002C9CA0 /* OP_VERIFY.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OP_VERIFY.swift; sourceTree = "<group>"; };
 		65DD5EF9278570AB002C9CA0 /* OP_VERNOTIF.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OP_VERNOTIF.swift; sourceTree = "<group>"; };
+		65DD5EFC2785713C002C9CA0 /* OP_CHECKLOCKTIMEVERIFY.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OP_CHECKLOCKTIMEVERIFY.swift; sourceTree = "<group>"; };
+		65DD5EFE2785722B002C9CA0 /* OP_CHECKSEQUENCEVERIFY.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OP_CHECKSEQUENCEVERIFY.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -452,6 +456,7 @@
 		65DD5E8827845B0A002C9CA0 /* CODE */ = {
 			isa = PBXGroup;
 			children = (
+				65DD5EFB2785712D002C9CA0 /* LockTime */,
 				65DD5EE627856C11002C9CA0 /* FlowControl */,
 				65DD5ED127854E69002C9CA0 /* Crypto */,
 				65DD5EC027854C97002C9CA0 /* Bitwise */,
@@ -541,6 +546,15 @@
 				65DD5EF9278570AB002C9CA0 /* OP_VERNOTIF.swift */,
 			);
 			path = FlowControl;
+			sourceTree = "<group>";
+		};
+		65DD5EFB2785712D002C9CA0 /* LockTime */ = {
+			isa = PBXGroup;
+			children = (
+				65DD5EFC2785713C002C9CA0 /* OP_CHECKLOCKTIMEVERIFY.swift */,
+				65DD5EFE2785722B002C9CA0 /* OP_CHECKSEQUENCEVERIFY.swift */,
+			);
+			path = LockTime;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -702,6 +716,7 @@
 				657BD5372772FC4F00B8E0D5 /* SecureRandom.swift in Sources */,
 				65DD5ED527854EC6002C9CA0 /* OP_CHECKMULTISIGVERIFY.swift in Sources */,
 				65DD5EFA278570AB002C9CA0 /* OP_VERNOTIF.swift in Sources */,
+				65DD5EFD2785713C002C9CA0 /* OP_CHECKLOCKTIMEVERIFY.swift in Sources */,
 				65DD5E9D278547D8002C9CA0 /* OP_DIV.swift in Sources */,
 				657BD5732779AF4000B8E0D5 /* PrivateKey.swift in Sources */,
 				65DD5DCD277C639A002C9CA0 /* Transaction.swift in Sources */,
@@ -726,6 +741,7 @@
 				657BD55027742D8700B8E0D5 /* Crypto.swift in Sources */,
 				65DD5EF827857092002C9CA0 /* OP_VERIFY.swift in Sources */,
 				65DD5EEC27856D99002C9CA0 /* OP_IF.swift in Sources */,
+				65DD5EFF2785722B002C9CA0 /* OP_CHECKSEQUENCEVERIFY.swift in Sources */,
 				657BD5662775C50700B8E0D5 /* Math.swift in Sources */,
 				65DD5EF62785704F002C9CA0 /* OP_VERIF.swift in Sources */,
 				65DD5EBD27854C0B002C9CA0 /* OP_SUB.swift in Sources */,
