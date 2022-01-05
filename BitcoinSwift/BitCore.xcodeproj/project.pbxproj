@@ -92,6 +92,14 @@
 		65DD5EBB27854BC6002C9CA0 /* OP_RSHIFT.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65DD5EBA27854BC6002C9CA0 /* OP_RSHIFT.swift */; };
 		65DD5EBD27854C0B002C9CA0 /* OP_SUB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65DD5EBC27854C0B002C9CA0 /* OP_SUB.swift */; };
 		65DD5EBF27854C24002C9CA0 /* OP_WITHIN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65DD5EBE27854C24002C9CA0 /* OP_WITHIN.swift */; };
+		65DD5EC227854CAC002C9CA0 /* OP_AND.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65DD5EC127854CAC002C9CA0 /* OP_AND.swift */; };
+		65DD5EC427854CC9002C9CA0 /* OP_EQUAL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65DD5EC327854CC9002C9CA0 /* OP_EQUAL.swift */; };
+		65DD5EC627854D1A002C9CA0 /* OP_EQUALVERIFY.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65DD5EC527854D1A002C9CA0 /* OP_EQUALVERIFY.swift */; };
+		65DD5EC827854D33002C9CA0 /* OP_INVERT.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65DD5EC727854D33002C9CA0 /* OP_INVERT.swift */; };
+		65DD5ECA27854DB3002C9CA0 /* OP_OR.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65DD5EC927854DB3002C9CA0 /* OP_OR.swift */; };
+		65DD5ECC27854DDC002C9CA0 /* OP_RESERVED1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65DD5ECB27854DDC002C9CA0 /* OP_RESERVED1.swift */; };
+		65DD5ECE27854E00002C9CA0 /* OP_RESERVED2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65DD5ECD27854E00002C9CA0 /* OP_RESERVED2.swift */; };
+		65DD5ED027854E1C002C9CA0 /* OP_XOR.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65DD5ECF27854E1C002C9CA0 /* OP_XOR.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -192,6 +200,14 @@
 		65DD5EBA27854BC6002C9CA0 /* OP_RSHIFT.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OP_RSHIFT.swift; sourceTree = "<group>"; };
 		65DD5EBC27854C0B002C9CA0 /* OP_SUB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OP_SUB.swift; sourceTree = "<group>"; };
 		65DD5EBE27854C24002C9CA0 /* OP_WITHIN.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OP_WITHIN.swift; sourceTree = "<group>"; };
+		65DD5EC127854CAC002C9CA0 /* OP_AND.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OP_AND.swift; sourceTree = "<group>"; };
+		65DD5EC327854CC9002C9CA0 /* OP_EQUAL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OP_EQUAL.swift; sourceTree = "<group>"; };
+		65DD5EC527854D1A002C9CA0 /* OP_EQUALVERIFY.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OP_EQUALVERIFY.swift; sourceTree = "<group>"; };
+		65DD5EC727854D33002C9CA0 /* OP_INVERT.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OP_INVERT.swift; sourceTree = "<group>"; };
+		65DD5EC927854DB3002C9CA0 /* OP_OR.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OP_OR.swift; sourceTree = "<group>"; };
+		65DD5ECB27854DDC002C9CA0 /* OP_RESERVED1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OP_RESERVED1.swift; sourceTree = "<group>"; };
+		65DD5ECD27854E00002C9CA0 /* OP_RESERVED2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OP_RESERVED2.swift; sourceTree = "<group>"; };
+		65DD5ECF27854E1C002C9CA0 /* OP_XOR.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OP_XOR.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -396,6 +412,7 @@
 		65DD5E8827845B0A002C9CA0 /* CODE */ = {
 			isa = PBXGroup;
 			children = (
+				65DD5EC027854C97002C9CA0 /* Bitwise */,
 				65DD5E8927845C77002C9CA0 /* Arithmetic */,
 			);
 			path = CODE;
@@ -433,6 +450,21 @@
 				65DD5EBE27854C24002C9CA0 /* OP_WITHIN.swift */,
 			);
 			path = Arithmetic;
+			sourceTree = "<group>";
+		};
+		65DD5EC027854C97002C9CA0 /* Bitwise */ = {
+			isa = PBXGroup;
+			children = (
+				65DD5EC127854CAC002C9CA0 /* OP_AND.swift */,
+				65DD5EC327854CC9002C9CA0 /* OP_EQUAL.swift */,
+				65DD5EC527854D1A002C9CA0 /* OP_EQUALVERIFY.swift */,
+				65DD5EC727854D33002C9CA0 /* OP_INVERT.swift */,
+				65DD5EC927854DB3002C9CA0 /* OP_OR.swift */,
+				65DD5ECB27854DDC002C9CA0 /* OP_RESERVED1.swift */,
+				65DD5ECD27854E00002C9CA0 /* OP_RESERVED2.swift */,
+				65DD5ECF27854E1C002C9CA0 /* OP_XOR.swift */,
+			);
+			path = Bitwise;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -550,6 +582,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				65DD5ED027854E1C002C9CA0 /* OP_XOR.swift in Sources */,
 				65DD5DCF277C63A8002C9CA0 /* TransactionInput.swift in Sources */,
 				65DD5E952785443D002C9CA0 /* OP_ABS.swift in Sources */,
 				657BD54D27741F7200B8E0D5 /* Macros.swift in Sources */,
@@ -576,20 +609,25 @@
 				65DD5EB327854AB1002C9CA0 /* OP_NOT.swift in Sources */,
 				657BD5612775B90C00B8E0D5 /* Secp256k1.swift in Sources */,
 				65DD5E832783EA54002C9CA0 /* Block.swift in Sources */,
+				65DD5ECA27854DB3002C9CA0 /* OP_OR.swift in Sources */,
 				65DD5E7D277E061B002C9CA0 /* MerkleBlock.swift in Sources */,
+				65DD5EC627854D1A002C9CA0 /* OP_EQUALVERIFY.swift in Sources */,
 				657BD57B277AAAFF00B8E0D5 /* Message.swift in Sources */,
 				657BD5392772FD1600B8E0D5 /* Status.swift in Sources */,
 				65DD5DD1277C63DD002C9CA0 /* TransactionOutput.swift in Sources */,
 				65DD5EB727854B2E002C9CA0 /* OP_NUMEQUALVERIFY.swift in Sources */,
+				65DD5EC427854CC9002C9CA0 /* OP_EQUAL.swift in Sources */,
 				65DD5EA727854991002C9CA0 /* OP_LSHIFT.swift in Sources */,
 				657BD5372772FC4F00B8E0D5 /* SecureRandom.swift in Sources */,
 				65DD5E9D278547D8002C9CA0 /* OP_DIV.swift in Sources */,
 				657BD5732779AF4000B8E0D5 /* PrivateKey.swift in Sources */,
 				65DD5DCD277C639A002C9CA0 /* Transaction.swift in Sources */,
 				65DD5E9727854469002C9CA0 /* OP_ADD.swift in Sources */,
+				65DD5ECC27854DDC002C9CA0 /* OP_RESERVED1.swift in Sources */,
 				657BD56C2779911300B8E0D5 /* Signature.swift in Sources */,
 				65DD5E8B27845CC9002C9CA0 /* OP_0NOTEQUAL.swift in Sources */,
 				657BD55427748E6B00B8E0D5 /* RangeReplaceableCollection.swift in Sources */,
+				65DD5EC827854D33002C9CA0 /* OP_INVERT.swift in Sources */,
 				65DD5E7F277E0881002C9CA0 /* ByteStream.swift in Sources */,
 				65DD5E87278458A0002C9CA0 /* ScriptExecutionContext.swift in Sources */,
 				65DD5E8F27853D0D002C9CA0 /* OP_1SUB.swift in Sources */,
@@ -612,11 +650,13 @@
 				657BD55C2775AA1F00B8E0D5 /* Bech32.swift in Sources */,
 				65DD5EA1278548E6002C9CA0 /* OP_GREATERTHANOREQUAL.swift in Sources */,
 				65DD5DC8277C5F31002C9CA0 /* PublicKey+Address.swift in Sources */,
+				65DD5ECE27854E00002C9CA0 /* OP_RESERVED2.swift in Sources */,
 				65DD5E9B2785478B002C9CA0 /* OP_BOOLOR.swift in Sources */,
 				65DD5EBF27854C24002C9CA0 /* OP_WITHIN.swift in Sources */,
 				657BD54B27741DAD00B8E0D5 /* RIPEMD160.swift in Sources */,
 				65DD5EA52785493D002C9CA0 /* OP_LESSTHANOREQUAL.swift in Sources */,
 				65DD5EBB27854BC6002C9CA0 /* OP_RSHIFT.swift in Sources */,
+				65DD5EC227854CAC002C9CA0 /* OP_AND.swift in Sources */,
 				65DD5EAB27854A1A002C9CA0 /* OP_MIN.swift in Sources */,
 				65DD5E9F278548A9002C9CA0 /* OP_GREATERTHAN.swift in Sources */,
 				657BD5682775D30000B8E0D5 /* EllipticCurvePoint.swift in Sources */,
