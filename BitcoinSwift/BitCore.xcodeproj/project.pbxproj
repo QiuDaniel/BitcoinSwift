@@ -110,6 +110,16 @@
 		65DD5EE127856B8B002C9CA0 /* OP_RIPEMD160.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65DD5EE027856B8B002C9CA0 /* OP_RIPEMD160.swift */; };
 		65DD5EE327856BA3002C9CA0 /* OP_SHA1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65DD5EE227856BA3002C9CA0 /* OP_SHA1.swift */; };
 		65DD5EE527856BBB002C9CA0 /* OP_SHA256.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65DD5EE427856BBB002C9CA0 /* OP_SHA256.swift */; };
+		65DD5EE827856C30002C9CA0 /* OP_ELSE.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65DD5EE727856C30002C9CA0 /* OP_ELSE.swift */; };
+		65DD5EEA27856D54002C9CA0 /* OP_ENDIF.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65DD5EE927856D54002C9CA0 /* OP_ENDIF.swift */; };
+		65DD5EEC27856D99002C9CA0 /* OP_IF.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65DD5EEB27856D99002C9CA0 /* OP_IF.swift */; };
+		65DD5EEE27856ED7002C9CA0 /* OP_NOP.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65DD5EED27856ED7002C9CA0 /* OP_NOP.swift */; };
+		65DD5EF027856F41002C9CA0 /* OP_NOTIF.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65DD5EEF27856F41002C9CA0 /* OP_NOTIF.swift */; };
+		65DD5EF227856F6A002C9CA0 /* OP_RETURN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65DD5EF127856F6A002C9CA0 /* OP_RETURN.swift */; };
+		65DD5EF427856FF5002C9CA0 /* OP_VER.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65DD5EF327856FF5002C9CA0 /* OP_VER.swift */; };
+		65DD5EF62785704F002C9CA0 /* OP_VERIF.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65DD5EF52785704F002C9CA0 /* OP_VERIF.swift */; };
+		65DD5EF827857092002C9CA0 /* OP_VERIFY.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65DD5EF727857092002C9CA0 /* OP_VERIFY.swift */; };
+		65DD5EFA278570AB002C9CA0 /* OP_VERNOTIF.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65DD5EF9278570AB002C9CA0 /* OP_VERNOTIF.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -228,6 +238,16 @@
 		65DD5EE027856B8B002C9CA0 /* OP_RIPEMD160.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OP_RIPEMD160.swift; sourceTree = "<group>"; };
 		65DD5EE227856BA3002C9CA0 /* OP_SHA1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OP_SHA1.swift; sourceTree = "<group>"; };
 		65DD5EE427856BBB002C9CA0 /* OP_SHA256.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OP_SHA256.swift; sourceTree = "<group>"; };
+		65DD5EE727856C30002C9CA0 /* OP_ELSE.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OP_ELSE.swift; sourceTree = "<group>"; };
+		65DD5EE927856D54002C9CA0 /* OP_ENDIF.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OP_ENDIF.swift; sourceTree = "<group>"; };
+		65DD5EEB27856D99002C9CA0 /* OP_IF.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OP_IF.swift; sourceTree = "<group>"; };
+		65DD5EED27856ED7002C9CA0 /* OP_NOP.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OP_NOP.swift; sourceTree = "<group>"; };
+		65DD5EEF27856F41002C9CA0 /* OP_NOTIF.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OP_NOTIF.swift; sourceTree = "<group>"; };
+		65DD5EF127856F6A002C9CA0 /* OP_RETURN.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OP_RETURN.swift; sourceTree = "<group>"; };
+		65DD5EF327856FF5002C9CA0 /* OP_VER.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OP_VER.swift; sourceTree = "<group>"; };
+		65DD5EF52785704F002C9CA0 /* OP_VERIF.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OP_VERIF.swift; sourceTree = "<group>"; };
+		65DD5EF727857092002C9CA0 /* OP_VERIFY.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OP_VERIFY.swift; sourceTree = "<group>"; };
+		65DD5EF9278570AB002C9CA0 /* OP_VERNOTIF.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OP_VERNOTIF.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -432,6 +452,7 @@
 		65DD5E8827845B0A002C9CA0 /* CODE */ = {
 			isa = PBXGroup;
 			children = (
+				65DD5EE627856C11002C9CA0 /* FlowControl */,
 				65DD5ED127854E69002C9CA0 /* Crypto */,
 				65DD5EC027854C97002C9CA0 /* Bitwise */,
 				65DD5E8927845C77002C9CA0 /* Arithmetic */,
@@ -503,6 +524,23 @@
 				65DD5EE427856BBB002C9CA0 /* OP_SHA256.swift */,
 			);
 			path = Crypto;
+			sourceTree = "<group>";
+		};
+		65DD5EE627856C11002C9CA0 /* FlowControl */ = {
+			isa = PBXGroup;
+			children = (
+				65DD5EE727856C30002C9CA0 /* OP_ELSE.swift */,
+				65DD5EE927856D54002C9CA0 /* OP_ENDIF.swift */,
+				65DD5EEB27856D99002C9CA0 /* OP_IF.swift */,
+				65DD5EED27856ED7002C9CA0 /* OP_NOP.swift */,
+				65DD5EEF27856F41002C9CA0 /* OP_NOTIF.swift */,
+				65DD5EF127856F6A002C9CA0 /* OP_RETURN.swift */,
+				65DD5EF327856FF5002C9CA0 /* OP_VER.swift */,
+				65DD5EF52785704F002C9CA0 /* OP_VERIF.swift */,
+				65DD5EF727857092002C9CA0 /* OP_VERIFY.swift */,
+				65DD5EF9278570AB002C9CA0 /* OP_VERNOTIF.swift */,
+			);
+			path = FlowControl;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -653,6 +691,7 @@
 				65DD5E832783EA54002C9CA0 /* Block.swift in Sources */,
 				65DD5ECA27854DB3002C9CA0 /* OP_OR.swift in Sources */,
 				65DD5E7D277E061B002C9CA0 /* MerkleBlock.swift in Sources */,
+				65DD5EE827856C30002C9CA0 /* OP_ELSE.swift in Sources */,
 				65DD5EC627854D1A002C9CA0 /* OP_EQUALVERIFY.swift in Sources */,
 				657BD57B277AAAFF00B8E0D5 /* Message.swift in Sources */,
 				657BD5392772FD1600B8E0D5 /* Status.swift in Sources */,
@@ -662,6 +701,7 @@
 				65DD5EA727854991002C9CA0 /* OP_LSHIFT.swift in Sources */,
 				657BD5372772FC4F00B8E0D5 /* SecureRandom.swift in Sources */,
 				65DD5ED527854EC6002C9CA0 /* OP_CHECKMULTISIGVERIFY.swift in Sources */,
+				65DD5EFA278570AB002C9CA0 /* OP_VERNOTIF.swift in Sources */,
 				65DD5E9D278547D8002C9CA0 /* OP_DIV.swift in Sources */,
 				657BD5732779AF4000B8E0D5 /* PrivateKey.swift in Sources */,
 				65DD5DCD277C639A002C9CA0 /* Transaction.swift in Sources */,
@@ -671,7 +711,9 @@
 				65DD5E8B27845CC9002C9CA0 /* OP_0NOTEQUAL.swift in Sources */,
 				65DD5EE527856BBB002C9CA0 /* OP_SHA256.swift in Sources */,
 				657BD55427748E6B00B8E0D5 /* RangeReplaceableCollection.swift in Sources */,
+				65DD5EF227856F6A002C9CA0 /* OP_RETURN.swift in Sources */,
 				65DD5EC827854D33002C9CA0 /* OP_INVERT.swift in Sources */,
+				65DD5EF427856FF5002C9CA0 /* OP_VER.swift in Sources */,
 				65DD5E7F277E0881002C9CA0 /* ByteStream.swift in Sources */,
 				65DD5E87278458A0002C9CA0 /* ScriptExecutionContext.swift in Sources */,
 				65DD5E8F27853D0D002C9CA0 /* OP_1SUB.swift in Sources */,
@@ -682,19 +724,25 @@
 				657BD617277C450A00B8E0D5 /* BitcoinAddress.swift in Sources */,
 				657BD52C2772CE5B00B8E0D5 /* Base58.swift in Sources */,
 				657BD55027742D8700B8E0D5 /* Crypto.swift in Sources */,
+				65DD5EF827857092002C9CA0 /* OP_VERIFY.swift in Sources */,
+				65DD5EEC27856D99002C9CA0 /* OP_IF.swift in Sources */,
 				657BD5662775C50700B8E0D5 /* Math.swift in Sources */,
+				65DD5EF62785704F002C9CA0 /* OP_VERIF.swift in Sources */,
 				65DD5EBD27854C0B002C9CA0 /* OP_SUB.swift in Sources */,
 				65077261274F7F36006500C1 /* BitCoreError.swift in Sources */,
 				65DD5ED927856B03002C9CA0 /* OP_CHECKSIGVERIFY.swift in Sources */,
 				657BD54027730D8000B8E0D5 /* Data.swift in Sources */,
 				65DD5EE327856BA3002C9CA0 /* OP_SHA1.swift in Sources */,
+				65DD5EEE27856ED7002C9CA0 /* OP_NOP.swift in Sources */,
 				657BD5772779B6AB00B8E0D5 /* CoinType.swift in Sources */,
 				65DD5DD9277C7018002C9CA0 /* VarInt.swift in Sources */,
+				65DD5EEA27856D54002C9CA0 /* OP_ENDIF.swift in Sources */,
 				65DD5E73277D854E002C9CA0 /* MerkleTree.swift in Sources */,
 				65DD5EE127856B8B002C9CA0 /* OP_RIPEMD160.swift in Sources */,
 				657BD56A2775D6FE00B8E0D5 /* Point.swift in Sources */,
 				65DD5E9127853D61002C9CA0 /* OP_2DIV.swift in Sources */,
 				657BD55C2775AA1F00B8E0D5 /* Bech32.swift in Sources */,
+				65DD5EF027856F41002C9CA0 /* OP_NOTIF.swift in Sources */,
 				65DD5EA1278548E6002C9CA0 /* OP_GREATERTHANOREQUAL.swift in Sources */,
 				65DD5DC8277C5F31002C9CA0 /* PublicKey+Address.swift in Sources */,
 				65DD5ECE27854E00002C9CA0 /* OP_RESERVED2.swift in Sources */,
