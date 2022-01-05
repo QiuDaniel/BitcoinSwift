@@ -155,6 +155,9 @@
 		65DD5F4227857C7F002C9CA0 /* OP_SWAP.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65DD5F4127857C7F002C9CA0 /* OP_SWAP.swift */; };
 		65DD5F4427857C96002C9CA0 /* OP_TOTALSTACK.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65DD5F4327857C96002C9CA0 /* OP_TOTALSTACK.swift */; };
 		65DD5F4627857CAC002C9CA0 /* OP_TUCK.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65DD5F4527857CAC002C9CA0 /* OP_TUCK.swift */; };
+		65DD5F4A27858CFD002C9CA0 /* ScriptChunk.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65DD5F4927858CFD002C9CA0 /* ScriptChunk.swift */; };
+		65DD5F4E2785A058002C9CA0 /* Script+Static.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65DD5F4D2785A058002C9CA0 /* Script+Static.swift */; };
+		65DD5F502785A3DB002C9CA0 /* OPCode+Static.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65DD5F4F2785A3DB002C9CA0 /* OPCode+Static.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -318,6 +321,9 @@
 		65DD5F4127857C7F002C9CA0 /* OP_SWAP.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OP_SWAP.swift; sourceTree = "<group>"; };
 		65DD5F4327857C96002C9CA0 /* OP_TOTALSTACK.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OP_TOTALSTACK.swift; sourceTree = "<group>"; };
 		65DD5F4527857CAC002C9CA0 /* OP_TUCK.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OP_TUCK.swift; sourceTree = "<group>"; };
+		65DD5F4927858CFD002C9CA0 /* ScriptChunk.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScriptChunk.swift; sourceTree = "<group>"; };
+		65DD5F4D2785A058002C9CA0 /* Script+Static.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Script+Static.swift"; sourceTree = "<group>"; };
+		65DD5F4F2785A3DB002C9CA0 /* OPCode+Static.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OPCode+Static.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -486,6 +492,8 @@
 				65DD5DD5277C6CDD002C9CA0 /* OpCode */,
 				65DD5DD3277C68A9002C9CA0 /* Script.swift */,
 				65DD5E86278458A0002C9CA0 /* ScriptExecutionContext.swift */,
+				65DD5F4927858CFD002C9CA0 /* ScriptChunk.swift */,
+				65DD5F4D2785A058002C9CA0 /* Script+Static.swift */,
 			);
 			path = Script;
 			sourceTree = "<group>";
@@ -496,6 +504,7 @@
 				65DD5E8827845B0A002C9CA0 /* CODE */,
 				65DD5DD6277C6D44002C9CA0 /* OPCode.swift */,
 				65DD5E66277D5CDE002C9CA0 /* OpCodeType.swift */,
+				65DD5F4F2785A3DB002C9CA0 /* OPCode+Static.swift */,
 			);
 			path = OpCode;
 			sourceTree = "<group>";
@@ -857,6 +866,7 @@
 				65DD5ECA27854DB3002C9CA0 /* OP_OR.swift in Sources */,
 				65DD5E7D277E061B002C9CA0 /* MerkleBlock.swift in Sources */,
 				65DD5EE827856C30002C9CA0 /* OP_ELSE.swift in Sources */,
+				65DD5F4E2785A058002C9CA0 /* Script+Static.swift in Sources */,
 				65DD5EC627854D1A002C9CA0 /* OP_EQUALVERIFY.swift in Sources */,
 				65DD5F4027857C68002C9CA0 /* OP_ROT.swift in Sources */,
 				657BD57B277AAAFF00B8E0D5 /* Message.swift in Sources */,
@@ -864,6 +874,7 @@
 				65DD5F2827857A24002C9CA0 /* OP_2ROT.swift in Sources */,
 				657BD5392772FD1600B8E0D5 /* Status.swift in Sources */,
 				65DD5DD1277C63DD002C9CA0 /* TransactionOutput.swift in Sources */,
+				65DD5F502785A3DB002C9CA0 /* OPCode+Static.swift in Sources */,
 				65DD5EB727854B2E002C9CA0 /* OP_NUMEQUALVERIFY.swift in Sources */,
 				65DD5EC427854CC9002C9CA0 /* OP_EQUAL.swift in Sources */,
 				65DD5F4427857C96002C9CA0 /* OP_TOTALSTACK.swift in Sources */,
@@ -895,6 +906,7 @@
 				657BD55F2775B12400B8E0D5 /* EllipticCurve.swift in Sources */,
 				65DD5EB527854AF8002C9CA0 /* OP_NUMEQUAL.swift in Sources */,
 				65DD5F142785751F002C9CA0 /* OP_NOPN.swift in Sources */,
+				65DD5F4A27858CFD002C9CA0 /* ScriptChunk.swift in Sources */,
 				65DD5F1F27857625002C9CA0 /* OP_SPLIT.swift in Sources */,
 				65DD5E9927854686002C9CA0 /* OP_BOOLAND.swift in Sources */,
 				65DD5F19278575AA002C9CA0 /* OP_CAT.swift in Sources */,

@@ -13,6 +13,15 @@ extension Data {
         return Data()
     }
     
+    public var isASCII: Bool {
+        for ch in self {
+            if !(ch >= 0x20 && ch <= 0x7e) {
+                return false
+            }
+        }
+        return true
+    }
+    
     public init(hex: String) {
         self.init(Array<UInt8>(hex: hex))
     }

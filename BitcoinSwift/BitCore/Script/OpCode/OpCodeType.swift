@@ -11,12 +11,34 @@ public protocol OpCodeType {
     var name: String { get }
     var value: UInt8 { get }
     var isEnabled: Bool { get }
+    
+    func excuteProcess(_ context: ScriptExcutionContext) throws
 }
 
 extension OpCodeType {
+    
     public var isEnabled: Bool {
         return true
     }
+    
+    public func excuteProcess(_ context: ScriptExcutionContext) throws {
+        throw OpCodeExecutionError.notImplemented("[\(name)(\(value))]")
+    }
+    
+    public func excute(_ context: ScriptExcutionContext) throws {
+        try preProcess(context)
+    }
+}
+
+private extension OpCodeType {
+    
+    func preProcess(_ context: ScriptExcutionContext) throws {
+        
+        guard isEnabled else {
+            throw OpCodeExecutionError.disabled
+        }
+    }
+    
 }
 
 public enum OpCodeExecutionError: Error {
