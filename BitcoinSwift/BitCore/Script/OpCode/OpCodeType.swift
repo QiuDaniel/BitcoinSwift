@@ -27,15 +27,34 @@ extension OpCodeType {
     
     public func excute(_ context: ScriptExcutionContext) throws {
         try preProcess(context)
+        guard context.shouldExcute || (OPCode.OP_IF <= self && self <= OPCode.OP_ENDIF) else {
+            if context.verbose {
+                print("[SKIP execution :  \(name)(\(value))]\n" + String(repeating: "-", count: 100))
+            }
+            return
+        }
+        if context.verbose {
+            print("OPCount : \(context.opCount)\n[pre excution : \(name)(\(value))]\n\(context)")
+        }
+        try excuteProcess(context)
+        if context.verbose {
+            print("[post execution : \(name)(\(value))]\n\(context)\n" + String(repeating: "-", count: 100))
+        }
     }
 }
 
 private extension OpCodeType {
     
     func preProcess(_ context: ScriptExcutionContext) throws {
-        
+        if value > OPCode.OP_16 {
+            try context.incrementOpCount()
+        }
         guard isEnabled else {
             throw OpCodeExecutionError.disabled
+        }
+        
+        guard !(context.shouldExcute && 0 <= value && value <= OPCode.OP_PUSHDATA4.value) else {
+            throw OpCodeExecutionError.error("PUSHDATA OP_CODE should not be executed.")
         }
     }
     
@@ -72,34 +91,34 @@ public func != <Other: BinaryInteger>(lhs: Other, rhs: OpCodeType) -> Bool {
 }
 
 // >
-public func > (lhs: OpCodeType, rhs: OpCodeType) -> Bool {
+public func >(lhs: OpCodeType, rhs: OpCodeType) -> Bool {
     return lhs.value > rhs.value
 }
-public func > <Other: BinaryInteger>(lhs: OpCodeType, rhs: Other) -> Bool {
+public func ><Other: BinaryInteger>(lhs: OpCodeType, rhs: Other) -> Bool {
     return lhs.value > rhs
 }
-public func > <Other: BinaryInteger>(lhs: Other, rhs: OpCodeType) -> Bool {
+public func ><Other: BinaryInteger>(lhs: Other, rhs: OpCodeType) -> Bool {
     return lhs > rhs.value
 }
 
 // <
-public func < (lhs: OpCodeType, rhs: OpCodeType) -> Bool {
+public func <(lhs: OpCodeType, rhs: OpCodeType) -> Bool {
     return lhs.value < rhs.value
 }
-public func < <Other: BinaryInteger>(lhs: OpCodeType, rhs: Other) -> Bool {
+public func <<Other: BinaryInteger>(lhs: OpCodeType, rhs: Other) -> Bool {
     return lhs.value < rhs
 }
-public func < <Other: BinaryInteger>(lhs: Other, rhs: OpCodeType) -> Bool {
+public func <<Other: BinaryInteger>(lhs: Other, rhs: OpCodeType) -> Bool {
     return lhs < rhs.value
 }
 
 // >=
-public func >= (lhs: OpCodeType, rhs: OpCodeType) -> Bool {
+public func >=(lhs: OpCodeType, rhs: OpCodeType) -> Bool {
     return lhs.value >= rhs.value
 }
 
 // <=
-public func <= (lhs: OpCodeType, rhs: OpCodeType) -> Bool {
+public func <=(lhs: OpCodeType, rhs: OpCodeType) -> Bool {
     return lhs.value <= rhs.value
 }
 

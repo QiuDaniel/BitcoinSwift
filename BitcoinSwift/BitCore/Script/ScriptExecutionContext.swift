@@ -34,7 +34,7 @@ public final class ScriptExcutionContext {
     
     public var verbose: Bool = false
     
-    public var shouldExecute: Bool {
+    public var shouldExcute: Bool {
         return !conditionStack.contains(false)
     }
 
@@ -103,7 +103,82 @@ public extension ScriptExcutionContext {
         }
     }
     
+    func parseP2SHScript(_ stack: [Data]) throws -> Script {
+        var stackForP2SH = stack
+        guard let last = stackForP2SH.last, let deserializedScript = Script(last) else {
+            throw ScriptError.error("internal inconsistency: stack for P2SH cannot be empty at this point.")
+        }
+        stackForP2SH.removeLast()
+        resetStack()
+        self.stack = stackForP2SH
+        return deserializedScript
+    }
+    
+    func remove(at i: Int) {
+        stack.remove(at: normalized(i))
+    }
+    
+    func data(at i: Int) -> Data {
+        return stack[normalized(i)]
+    }
+    
+    func number(at i: Int) throws -> Int32 {
+        let data = data(at: i)
+        guard data.count <= 4 else {
+            throw OpCodeExecutionError.invalidBigNumber
+        }
+        return data.to(Int32.self)
+    }
+    
+    func bool(at i: Int) -> Bool {
+        let data = data(at: i)
+        guard !data.isEmpty else {
+            return false
+        }
+        for (index, byte) in data.enumerated() where byte != 0 {
+            if index == (data.count - 1) && byte == 0x80 {
+                return false
+            }
+            return true
+        }
+        return false
+    }
 }
+
+extension ScriptExcutionContext: CustomStringConvertible {
+    public var description: String {
+        var desc: String = ""
+        for data in stack.reversed() {
+            let hex = data.hex
+            var contents: String = "0x" + hex
+
+            if hex.count > 20 {
+                let first = hex.prefix(5)
+                let last = hex.suffix(5)
+                contents = "\(first)..\(last) [\(data.count)bytes]"
+            }
+
+            if contents == "0x" {
+                contents = "NULL [FALSE/0]"
+            }
+
+            if contents == "0x01" {
+                contents = "0x01 [TRUE/1]"
+            }
+
+            for _ in 0...(24 - contents.count) / 2 {
+                contents = " \(contents) "
+            }
+            desc += "| \(contents) |\n"
+        }
+        var base: String = ""
+        (0...14).forEach { _ in
+            base = "=\(base)="
+        }
+        return desc + base + "\n"
+    }
+}
+
 
 // MARK: - Private method
 

@@ -29,6 +29,24 @@ public enum ScriptError: Error {
 
 extension Script {
     
+    static func parse(_ data: Data) throws -> [ScriptChunk] {
+        guard !data.isEmpty else {
+            return [ScriptChunk]()
+        }
+        var chunks = [ScriptChunk]()
+
+        var i: Int = 0
+        let count: Int = data.count
+
+        while i < count {
+            // Exit if failed to parse
+            let chunk = try parse(from: data, offset: i)
+            chunks.append(chunk)
+            i += chunk.range.count
+        }
+        return chunks
+    }
+    
     /// Script
     /// - Parameters:
     ///   - data: data
