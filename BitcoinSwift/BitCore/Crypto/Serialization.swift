@@ -159,6 +159,13 @@ extension Int64: BinaryConvertible {}
 
 extension Data {
     
+    // https://stackoverflow.com/questions/60857760/warning-initialization-of-unsafebufferpointert-results-in-a-dangling-buffer
+    init<T>(value: T) {
+        self = withUnsafePointer(to: value) { (ptr: UnsafePointer<T>) -> Data in
+            return Data(buffer: UnsafeBufferPointer(start: ptr, count: 1))
+        }
+    }
+    
     func to<T>(_ type: T.Type) -> T {
         if type == VarInt.self {
             return to(type)
