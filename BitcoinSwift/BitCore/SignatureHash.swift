@@ -93,7 +93,7 @@ public struct SignatureHash {
                               lockTime: tx.lockTime)
         var data: Data = rawTransaction.serialize()
 
-        data += hashType.uint32
+        data += hashType.uint32.data
         let hash = Crypto.hash256(data)
         return hash
     }
