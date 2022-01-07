@@ -24,14 +24,19 @@ public struct OpCheckLockTimeVerify: OpCodeType {
             throw OpCodeExcutionError.error("OP_CHECKLOCKTIMEVERIFY must have a transaction in context.")
         }
         
-        let SEQUENCE_FINAL: UInt32 = 0xffffffff
-        guard txin.sequence != SEQUENCE_FINAL else {
-            throw OpCodeExcutionError.error("The input's nSequence field is equal to 0xffffffff.")
-        }
-        
         guard (tx.lockTime < BTC_LOCKTIME_THRESHOLD && nLockTime < BTC_LOCKTIME_THRESHOLD) ||
             (tx.lockTime >= BTC_LOCKTIME_THRESHOLD && nLockTime >= BTC_LOCKTIME_THRESHOLD) else {
             throw OpCodeExcutionError.error("tx.lockTime and nLockTime should be the same kind.")
+        }
+        
+        guard nLockTime <= tx.lockTime  else {
+            throw OpCodeExcutionError.error("The top stack item is greater than the transaction's nLockTime field")
+        }
+        
+        
+        let SEQUENCE_FINAL: UInt32 = 0xffffffff
+        guard txin.sequence != SEQUENCE_FINAL else {
+            throw OpCodeExcutionError.error("The input's nSequence field is equal to 0xffffffff.")
         }
     }
 }

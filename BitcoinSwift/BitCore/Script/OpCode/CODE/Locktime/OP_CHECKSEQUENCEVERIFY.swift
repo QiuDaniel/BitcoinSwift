@@ -47,7 +47,7 @@ public struct OpCheckSequenceVerify: OpCodeType {
                 throw OpCodeExcutionError.error("txToSequenceMasked and nSequenceMasked should be the same kind.")
         }
 
-        guard nSequence <= txToSequenceMasked  else {
+        guard nSequenceMasked <= txToSequenceMasked  else {
             throw OpCodeExcutionError.error("The top stack item is greater than the transaction's nSequence field")
         }
     }
