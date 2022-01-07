@@ -553,13 +553,13 @@
 			children = (
 				65DD5F2027857656002C9CA0 /* Stack */,
 				65DD5F1527857577002C9CA0 /* Splice */,
-				65DD5F1227857514002C9CA0 /* Reserved */,
+				65DD5F1227857514002C9CA0 /* Reserved words */,
 				65DD5F072785731D002C9CA0 /* PushData */,
-				65DD5F0027857287002C9CA0 /* Pseudo */,
-				65DD5EFB2785712D002C9CA0 /* LockTime */,
-				65DD5EE627856C11002C9CA0 /* FlowControl */,
+				65DD5F0027857287002C9CA0 /* Pseudo words */,
+				65DD5EFB2785712D002C9CA0 /* Locktime */,
+				65DD5EE627856C11002C9CA0 /* Flow Control */,
 				65DD5ED127854E69002C9CA0 /* Crypto */,
-				65DD5EC027854C97002C9CA0 /* Bitwise */,
+				65DD5EC027854C97002C9CA0 /* Bitwise logic */,
 				65DD5E8927845C77002C9CA0 /* Arithmetic */,
 			);
 			path = CODE;
@@ -599,7 +599,7 @@
 			path = Arithmetic;
 			sourceTree = "<group>";
 		};
-		65DD5EC027854C97002C9CA0 /* Bitwise */ = {
+		65DD5EC027854C97002C9CA0 /* Bitwise logic */ = {
 			isa = PBXGroup;
 			children = (
 				65DD5EC127854CAC002C9CA0 /* OP_AND.swift */,
@@ -611,7 +611,7 @@
 				65DD5ECD27854E00002C9CA0 /* OP_RESERVED2.swift */,
 				65DD5ECF27854E1C002C9CA0 /* OP_XOR.swift */,
 			);
-			path = Bitwise;
+			path = "Bitwise logic";
 			sourceTree = "<group>";
 		};
 		65DD5ED127854E69002C9CA0 /* Crypto */ = {
@@ -631,7 +631,7 @@
 			path = Crypto;
 			sourceTree = "<group>";
 		};
-		65DD5EE627856C11002C9CA0 /* FlowControl */ = {
+		65DD5EE627856C11002C9CA0 /* Flow Control */ = {
 			isa = PBXGroup;
 			children = (
 				65DD5EE727856C30002C9CA0 /* OP_ELSE.swift */,
@@ -645,26 +645,26 @@
 				65DD5EF727857092002C9CA0 /* OP_VERIFY.swift */,
 				65DD5EF9278570AB002C9CA0 /* OP_VERNOTIF.swift */,
 			);
-			path = FlowControl;
+			path = "Flow Control";
 			sourceTree = "<group>";
 		};
-		65DD5EFB2785712D002C9CA0 /* LockTime */ = {
+		65DD5EFB2785712D002C9CA0 /* Locktime */ = {
 			isa = PBXGroup;
 			children = (
 				65DD5EFC2785713C002C9CA0 /* OP_CHECKLOCKTIMEVERIFY.swift */,
 				65DD5EFE2785722B002C9CA0 /* OP_CHECKSEQUENCEVERIFY.swift */,
 			);
-			path = LockTime;
+			path = Locktime;
 			sourceTree = "<group>";
 		};
-		65DD5F0027857287002C9CA0 /* Pseudo */ = {
+		65DD5F0027857287002C9CA0 /* Pseudo words */ = {
 			isa = PBXGroup;
 			children = (
 				65DD5F01278572B6002C9CA0 /* OP_INVALIDOPCODE.swift */,
 				65DD5F03278572E8002C9CA0 /* OP_PUBKEY.swift */,
 				65DD5F0527857302002C9CA0 /* OP_PUBKEYHASH.swift */,
 			);
-			path = Pseudo;
+			path = "Pseudo words";
 			sourceTree = "<group>";
 		};
 		65DD5F072785731D002C9CA0 /* PushData */ = {
@@ -679,12 +679,12 @@
 			path = PushData;
 			sourceTree = "<group>";
 		};
-		65DD5F1227857514002C9CA0 /* Reserved */ = {
+		65DD5F1227857514002C9CA0 /* Reserved words */ = {
 			isa = PBXGroup;
 			children = (
 				65DD5F132785751F002C9CA0 /* OP_NOPN.swift */,
 			);
-			path = Reserved;
+			path = "Reserved words";
 			sourceTree = "<group>";
 		};
 		65DD5F1527857577002C9CA0 /* Splice */ = {
