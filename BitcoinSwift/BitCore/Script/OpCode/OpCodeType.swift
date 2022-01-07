@@ -22,7 +22,7 @@ extension OpCodeType {
     }
     
     public func excuteProcess(_ context: ScriptExcutionContext) throws {
-        throw OpCodeExecutionError.notImplemented("[\(name)(\(value))]")
+        throw OpCodeExcutionError.notImplemented("[\(name)(\(value))]")
     }
     
     public func excute(_ context: ScriptExcutionContext) throws {
@@ -50,20 +50,20 @@ private extension OpCodeType {
             try context.incrementOpCount()
         }
         guard isEnabled else {
-            throw OpCodeExecutionError.disabled
+            throw OpCodeExcutionError.disabled
         }
         
         guard !(context.shouldExcute && 0 <= value && value <= OPCode.OP_PUSHDATA4.value) else {
-            throw OpCodeExecutionError.error("PUSHDATA OP_CODE should not be executed.")
+            throw OpCodeExcutionError.error("PUSHDATA OP_CODE should not be executed.")
         }
     }
     
 }
 
-public enum OpCodeExecutionError: Error {
+public enum OpCodeExcutionError: Error {
     case notImplemented(String)
     case error(String)
-    case opcodeRequiresItemOnStack(Int)
+    case opcodeRequiresItemsOnStack(Int)
     case invalidBigNumber
     case disabled
 }

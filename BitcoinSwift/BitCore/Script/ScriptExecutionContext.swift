@@ -69,7 +69,7 @@ public extension ScriptExcutionContext {
     
     func push(_ data: Data) throws {
         guard data.count <= BTC_MAX_SCRIPT_ELEMENT_SIZE else {
-            throw OpCodeExecutionError.error("PushedData size is too big.")
+            throw OpCodeExcutionError.error("PushedData size is too big.")
         }
         stack.append(data)
     }
@@ -86,20 +86,20 @@ public extension ScriptExcutionContext {
     
     func assertStackHeightGreaterThanOrEqual(_ n: Int) throws {
         guard stack.count >= n else {
-            throw OpCodeExecutionError.opcodeRequiresItemOnStack(n)
+            throw OpCodeExcutionError.opcodeRequiresItemsOnStack(n)
         }
     }
 
     func assertAltStackHeightGreaterThanOrEqual(_ n: Int) throws {
         guard altStack.count >= n else {
-            throw OpCodeExecutionError.error("Operation requires \(n) items on altstack.")
+            throw OpCodeExcutionError.error("Operation requires \(n) items on altstack.")
         }
     }
 
     func incrementOpCount(by i: Int = 1) throws {
         opCount += i
         guard opCount <= BTC_MAX_OPS_PER_SCRIPT else {
-            throw OpCodeExecutionError.error("Exceeded the allowed number of operations per script.")
+            throw OpCodeExcutionError.error("Exceeded the allowed number of operations per script.")
         }
     }
     
@@ -114,24 +114,28 @@ public extension ScriptExcutionContext {
         return deserializedScript
     }
     
-    func remove(at i: Int) {
-        stack.remove(at: normalized(i))
+    @discardableResult
+    func remove(at i: Int) -> Data {
+        return stack.remove(at: normalized(i))
     }
     
-    func data(at i: Int) -> Data {
+    func data(at i: Int, pop: Bool = true) -> Data {
+        if pop {
+            return remove(at: i)
+        }
         return stack[normalized(i)]
     }
     
-    func number(at i: Int) throws -> Int32 {
-        let data = data(at: i)
+    func number(at i: Int, pop: Bool = true) throws -> Int32 {
+        let data = data(at: i, pop: pop)
         guard data.count <= 4 else {
-            throw OpCodeExecutionError.invalidBigNumber
+            throw OpCodeExcutionError.invalidBigNumber
         }
         return data.to(Int32.self)
     }
     
-    func bool(at i: Int) -> Bool {
-        let data = data(at: i)
+    func bool(at i: Int, pop: Bool = true) -> Bool {
+        let data = data(at: i, pop: true)
         guard !data.isEmpty else {
             return false
         }

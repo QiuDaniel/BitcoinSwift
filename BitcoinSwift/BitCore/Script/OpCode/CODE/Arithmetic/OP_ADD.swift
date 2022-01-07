@@ -15,4 +15,11 @@ public struct OpAdd: OpCodeType {
     public var name: String {
         return "OP_Add"
     }
+    
+    public func excuteProcess(_ context: ScriptExcutionContext) throws {
+        try context.assertStackHeightGreaterThanOrEqual(2)
+        let input1 = try context.number(at: -1)
+        let input2 = try context.number(at: -1)
+        context.push(input1 + input2)
+    }
 }

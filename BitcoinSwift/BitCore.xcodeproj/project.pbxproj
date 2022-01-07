@@ -46,6 +46,7 @@
 		657BD57B277AAAFF00B8E0D5 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 657BD57A277AAAFF00B8E0D5 /* Message.swift */; };
 		657BD57D277B20BC00B8E0D5 /* PublicKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 657BD57C277B20BC00B8E0D5 /* PublicKey.swift */; };
 		657BD617277C450A00B8E0D5 /* BitcoinAddress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 657BD616277C450A00B8E0D5 /* BitcoinAddress.swift */; };
+		65A58C2A2787F1E400F73E40 /* ECDSA.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65A58C292787F1E400F73E40 /* ECDSA.swift */; };
 		65DD5DC8277C5F31002C9CA0 /* PublicKey+Address.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65DD5DC7277C5F31002C9CA0 /* PublicKey+Address.swift */; };
 		65DD5DCA277C5FAE002C9CA0 /* PublicKeyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65DD5DC9277C5FAE002C9CA0 /* PublicKeyTests.swift */; };
 		65DD5DCD277C639A002C9CA0 /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65DD5DCC277C639A002C9CA0 /* Transaction.swift */; };
@@ -158,6 +159,9 @@
 		65DD5F4A27858CFD002C9CA0 /* ScriptChunk.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65DD5F4927858CFD002C9CA0 /* ScriptChunk.swift */; };
 		65DD5F4E2785A058002C9CA0 /* Script+Static.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65DD5F4D2785A058002C9CA0 /* Script+Static.swift */; };
 		65DD5F502785A3DB002C9CA0 /* OPCode+Static.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65DD5F4F2785A3DB002C9CA0 /* OPCode+Static.swift */; };
+		65DD5F5227872875002C9CA0 /* Point+Static.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65DD5F5127872875002C9CA0 /* Point+Static.swift */; };
+		65DD5F5427873693002C9CA0 /* SigHashType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65DD5F5327873693002C9CA0 /* SigHashType.swift */; };
+		65DD5F5627873813002C9CA0 /* SignatureHash.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65DD5F5527873813002C9CA0 /* SignatureHash.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -212,6 +216,7 @@
 		657BD57A277AAAFF00B8E0D5 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		657BD57C277B20BC00B8E0D5 /* PublicKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicKey.swift; sourceTree = "<group>"; };
 		657BD616277C450A00B8E0D5 /* BitcoinAddress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BitcoinAddress.swift; sourceTree = "<group>"; };
+		65A58C292787F1E400F73E40 /* ECDSA.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ECDSA.swift; sourceTree = "<group>"; };
 		65DD5DC7277C5F31002C9CA0 /* PublicKey+Address.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PublicKey+Address.swift"; sourceTree = "<group>"; };
 		65DD5DC9277C5FAE002C9CA0 /* PublicKeyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicKeyTests.swift; sourceTree = "<group>"; };
 		65DD5DCC277C639A002C9CA0 /* Transaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transaction.swift; sourceTree = "<group>"; };
@@ -324,6 +329,9 @@
 		65DD5F4927858CFD002C9CA0 /* ScriptChunk.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScriptChunk.swift; sourceTree = "<group>"; };
 		65DD5F4D2785A058002C9CA0 /* Script+Static.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Script+Static.swift"; sourceTree = "<group>"; };
 		65DD5F4F2785A3DB002C9CA0 /* OPCode+Static.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OPCode+Static.swift"; sourceTree = "<group>"; };
+		65DD5F5127872875002C9CA0 /* Point+Static.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Point+Static.swift"; sourceTree = "<group>"; };
+		65DD5F5327873693002C9CA0 /* SigHashType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SigHashType.swift; sourceTree = "<group>"; };
+		65DD5F5527873813002C9CA0 /* SignatureHash.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignatureHash.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -367,6 +375,7 @@
 		65077246274F7E23006500C1 /* BitCore */ = {
 			isa = PBXGroup;
 			children = (
+				65A58C282787F1D600F73E40 /* Signing */,
 				65DD5E7B277E0602002C9CA0 /* Block */,
 				65DD5DD2277C689E002C9CA0 /* Script */,
 				65DD5DCB277C6373002C9CA0 /* Tx */,
@@ -386,6 +395,8 @@
 				65DD5DD8277C7018002C9CA0 /* VarInt.swift */,
 				65DD5E79277DC909002C9CA0 /* Helper.swift */,
 				65DD5E7E277E0881002C9CA0 /* ByteStream.swift */,
+				65DD5F5327873693002C9CA0 /* SigHashType.swift */,
+				65DD5F5527873813002C9CA0 /* SignatureHash.swift */,
 			);
 			path = BitCore;
 			sourceTree = "<group>";
@@ -461,6 +472,7 @@
 				657BD5692775D6FE00B8E0D5 /* Point.swift */,
 				657BD5602775B90C00B8E0D5 /* Secp256k1.swift */,
 				657BD56B2779911300B8E0D5 /* Signature.swift */,
+				65DD5F5127872875002C9CA0 /* Point+Static.swift */,
 			);
 			path = EllipticCurve;
 			sourceTree = "<group>";
@@ -474,6 +486,14 @@
 				657BD616277C450A00B8E0D5 /* BitcoinAddress.swift */,
 			);
 			path = Keys;
+			sourceTree = "<group>";
+		};
+		65A58C282787F1D600F73E40 /* Signing */ = {
+			isa = PBXGroup;
+			children = (
+				65A58C292787F1E400F73E40 /* ECDSA.swift */,
+			);
+			path = Signing;
 			sourceTree = "<group>";
 		};
 		65DD5DCB277C6373002C9CA0 /* Tx */ = {
@@ -867,6 +887,7 @@
 				65DD5E7D277E061B002C9CA0 /* MerkleBlock.swift in Sources */,
 				65DD5EE827856C30002C9CA0 /* OP_ELSE.swift in Sources */,
 				65DD5F4E2785A058002C9CA0 /* Script+Static.swift in Sources */,
+				65DD5F5427873693002C9CA0 /* SigHashType.swift in Sources */,
 				65DD5EC627854D1A002C9CA0 /* OP_EQUALVERIFY.swift in Sources */,
 				65DD5F4027857C68002C9CA0 /* OP_ROT.swift in Sources */,
 				657BD57B277AAAFF00B8E0D5 /* Message.swift in Sources */,
@@ -882,6 +903,7 @@
 				657BD5372772FC4F00B8E0D5 /* SecureRandom.swift in Sources */,
 				65DD5F3227857B19002C9CA0 /* OP_DUP.swift in Sources */,
 				65DD5F1D2785760E002C9CA0 /* OP_SIZE.swift in Sources */,
+				65DD5F5227872875002C9CA0 /* Point+Static.swift in Sources */,
 				65DD5ED527854EC6002C9CA0 /* OP_CHECKMULTISIGVERIFY.swift in Sources */,
 				65DD5EFA278570AB002C9CA0 /* OP_VERNOTIF.swift in Sources */,
 				65DD5EFD2785713C002C9CA0 /* OP_CHECKLOCKTIMEVERIFY.swift in Sources */,
@@ -904,6 +926,7 @@
 				65DD5E8F27853D0D002C9CA0 /* OP_1SUB.swift in Sources */,
 				65DD5E7A277DC909002C9CA0 /* Helper.swift in Sources */,
 				657BD55F2775B12400B8E0D5 /* EllipticCurve.swift in Sources */,
+				65A58C2A2787F1E400F73E40 /* ECDSA.swift in Sources */,
 				65DD5EB527854AF8002C9CA0 /* OP_NUMEQUAL.swift in Sources */,
 				65DD5F142785751F002C9CA0 /* OP_NOPN.swift in Sources */,
 				65DD5F4A27858CFD002C9CA0 /* ScriptChunk.swift in Sources */,
@@ -925,6 +948,7 @@
 				657BD5662775C50700B8E0D5 /* Math.swift in Sources */,
 				65DD5F04278572E8002C9CA0 /* OP_PUBKEY.swift in Sources */,
 				65DD5EF62785704F002C9CA0 /* OP_VERIF.swift in Sources */,
+				65DD5F5627873813002C9CA0 /* SignatureHash.swift in Sources */,
 				65DD5F4227857C7F002C9CA0 /* OP_SWAP.swift in Sources */,
 				65DD5EBD27854C0B002C9CA0 /* OP_SUB.swift in Sources */,
 				65077261274F7F36006500C1 /* BitCoreError.swift in Sources */,

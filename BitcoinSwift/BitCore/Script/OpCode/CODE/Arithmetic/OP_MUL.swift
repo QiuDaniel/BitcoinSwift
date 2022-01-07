@@ -15,4 +15,12 @@ public struct OpMul: OpCodeType {
     public var isEnabled: Bool {
         return false
     }
+    
+    public func excuteProcess(_ context: ScriptExcutionContext) throws {
+        try context.assertStackHeightGreaterThanOrEqual(2)
+        let x1 = try context.number(at: -1)
+        let x2 = try context.number(at: -1)
+        
+        context.push(x1 * x2)
+    }
 }

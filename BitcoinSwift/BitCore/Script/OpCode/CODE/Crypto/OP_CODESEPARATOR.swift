@@ -10,4 +10,6 @@ import Foundation
 public struct OpCodeSeparator: OpCodeType {
     public var value: UInt8 { return 0xab }
     public var name: String { return "OP_CODESEPARATOR" }
+    
+    public func excuteProcess(_ context: ScriptExcutionContext) throws {}
 }

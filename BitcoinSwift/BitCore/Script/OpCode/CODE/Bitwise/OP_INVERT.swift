@@ -14,4 +14,12 @@ public struct OpInvert: OpCodeType {
     public var isEnabled: Bool {
         return false
     }
+    
+    public func excuteProcess(_ context: ScriptExcutionContext) throws {
+        try context.assertStackHeightGreaterThanOrEqual(1)
+
+        let x = context.remove(at: -1)
+        let output: Data = Data(value: x.map { ~$0 })
+        try context.push(output)
+    }
 }

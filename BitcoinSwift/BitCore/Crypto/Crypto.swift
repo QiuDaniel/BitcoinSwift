@@ -42,6 +42,13 @@ public extension Crypto {
         return hash(value, function: SHA256())
     }
     
+    /// sha1
+    /// - Parameter value: message need to be hashed
+    /// - Returns: hashed value
+    static func sha1(_ value: Data) -> Data {
+        return hash(value, function: Insecure.SHA1())
+    }
+    
     
     /// two rounds of sha256
     /// - Parameter value: message need to be hashed

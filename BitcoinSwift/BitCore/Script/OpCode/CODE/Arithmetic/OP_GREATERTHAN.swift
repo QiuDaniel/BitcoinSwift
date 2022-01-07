@@ -10,4 +10,11 @@ import Foundation
 public struct OpGreaterThan: OpCodeType {
     public var value: UInt8 { return 0xa0 }
     public var name: String { return "OP_GREATERTHAN" }
+    
+    public func excuteProcess(_ context: ScriptExcutionContext) throws {
+        try context.assertStackHeightGreaterThanOrEqual(2)
+        let x1 = try context.number(at: -1)
+        let x2 = try context.number(at: -1)
+        context.push(x2 > x1)
+    }
 }

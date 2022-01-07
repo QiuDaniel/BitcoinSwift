@@ -15,4 +15,11 @@ public struct OpBoolOr: OpCodeType {
     public var name: String {
         return "OP_BOOLOR"
     }
+    
+    public func excuteProcess(_ context: ScriptExcutionContext) throws {
+        try context.assertStackHeightGreaterThanOrEqual(2)
+        let x1 = context.data(at: -1)
+        let x2 = context.data(at: -1)
+        context.push(x1 != .empty || x2 != .empty)
+    }
 }

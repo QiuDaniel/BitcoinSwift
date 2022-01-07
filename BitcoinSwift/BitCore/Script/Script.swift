@@ -140,6 +140,13 @@ public extension Script {
         }
         return nil
     }
+    
+    @discardableResult
+    func deleteOccurrences(of code: OPCode) throws -> Script {
+        let updatedData = chunks.filter { $0.code != code }.reduce(Data.empty) { $0 + $1.chunkData }
+        try update(with: updatedData)
+        return self
+    }
 }
 
 // MARK: - Private Method
@@ -226,12 +233,6 @@ private extension Script {
         return self
     }
 
-    @discardableResult
-    func deleteOccurrences(of code: OPCode) throws -> Script {
-        let updatedData = chunks.filter { $0.code != code }.reduce(Data.empty) { $0 + $1.chunkData }
-        try update(with: updatedData)
-        return self
-    }
     
     func `subscript`(from index: Int) throws -> Script {
         if index >= chunks.count || index < 0 {

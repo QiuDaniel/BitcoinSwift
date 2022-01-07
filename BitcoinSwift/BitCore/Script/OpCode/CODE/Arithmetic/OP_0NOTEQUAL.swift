@@ -15,4 +15,10 @@ public struct OP0NotEqual: OpCodeType {
     public var name: String {
         return "OP_0NOTEQUAL"
     }
+    
+    public func excuteProcess(_ context: ScriptExcutionContext) throws {
+        try context.assertStackHeightGreaterThanOrEqual(1)
+        let input = try context.number(at: -1)
+        context.push(input != 0)
+    }
 }
