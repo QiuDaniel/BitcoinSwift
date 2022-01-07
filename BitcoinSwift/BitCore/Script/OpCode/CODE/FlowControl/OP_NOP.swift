@@ -10,8 +10,6 @@ import Foundation
 public struct OpNop: OpCodeType {
     public var value: UInt8 { return 0x61 }
     public var name: String { return "OP_NOP" }
-
-//    public func mainProcess(_ context: ScriptExecutionContext) throws {
-//        // do nothing
-//    }
+    
+    public func excuteProcess(_ context: ScriptExcutionContext) throws {}
 }

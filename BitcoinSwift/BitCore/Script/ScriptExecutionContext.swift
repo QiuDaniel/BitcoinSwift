@@ -135,7 +135,7 @@ public extension ScriptExcutionContext {
     }
     
     func bool(at i: Int, pop: Bool = true) -> Bool {
-        let data = data(at: i, pop: true)
+        let data = data(at: i, pop: pop)
         guard !data.isEmpty else {
             return false
         }
