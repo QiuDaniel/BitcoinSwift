@@ -119,6 +119,10 @@ public extension ScriptExcutionContext {
         return stack.remove(at: normalized(i))
     }
     
+    func insert(_ newElement: Data, at i: Int) {
+        stack.insert(newElement, at: normalized(i))
+    }
+    
     func data(at i: Int, pop: Bool = true) -> Data {
         if pop {
             return remove(at: i)
