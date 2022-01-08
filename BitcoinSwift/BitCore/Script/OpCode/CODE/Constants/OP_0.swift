@@ -10,4 +10,8 @@ import Foundation
 public struct Op0: OpCodeType {
     public var value: UInt8 { return 0x00 }
     public var name: String { return "OP_0" }
+    
+    public func excuteProcess(_ context: ScriptExcutionContext) throws {
+        try context.push(.empty)
+    }
 }

@@ -21,4 +21,8 @@ public struct OpN: OpCodeType {
         }
         self.n = n
     }
+    
+    public func excuteProcess(_ context: ScriptExcutionContext) throws {
+        context.push(Int32(n))
+    }
 }

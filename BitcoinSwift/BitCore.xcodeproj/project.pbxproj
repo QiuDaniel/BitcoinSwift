@@ -554,7 +554,7 @@
 				65DD5F2027857656002C9CA0 /* Stack */,
 				65DD5F1527857577002C9CA0 /* Splice */,
 				65DD5F1227857514002C9CA0 /* Reserved words */,
-				65DD5F072785731D002C9CA0 /* PushData */,
+				65DD5F072785731D002C9CA0 /* Constants */,
 				65DD5F0027857287002C9CA0 /* Pseudo words */,
 				65DD5EFB2785712D002C9CA0 /* Locktime */,
 				65DD5EE627856C11002C9CA0 /* Flow Control */,
@@ -607,8 +607,6 @@
 				65DD5EC527854D1A002C9CA0 /* OP_EQUALVERIFY.swift */,
 				65DD5EC727854D33002C9CA0 /* OP_INVERT.swift */,
 				65DD5EC927854DB3002C9CA0 /* OP_OR.swift */,
-				65DD5ECB27854DDC002C9CA0 /* OP_RESERVED1.swift */,
-				65DD5ECD27854E00002C9CA0 /* OP_RESERVED2.swift */,
 				65DD5ECF27854E1C002C9CA0 /* OP_XOR.swift */,
 			);
 			path = "Bitwise logic";
@@ -640,10 +638,7 @@
 				65DD5EED27856ED7002C9CA0 /* OP_NOP.swift */,
 				65DD5EEF27856F41002C9CA0 /* OP_NOTIF.swift */,
 				65DD5EF127856F6A002C9CA0 /* OP_RETURN.swift */,
-				65DD5EF327856FF5002C9CA0 /* OP_VER.swift */,
-				65DD5EF52785704F002C9CA0 /* OP_VERIF.swift */,
 				65DD5EF727857092002C9CA0 /* OP_VERIFY.swift */,
-				65DD5EF9278570AB002C9CA0 /* OP_VERNOTIF.swift */,
 			);
 			path = "Flow Control";
 			sourceTree = "<group>";
@@ -667,22 +662,27 @@
 			path = "Pseudo words";
 			sourceTree = "<group>";
 		};
-		65DD5F072785731D002C9CA0 /* PushData */ = {
+		65DD5F072785731D002C9CA0 /* Constants */ = {
 			isa = PBXGroup;
 			children = (
 				65DD5F0827857333002C9CA0 /* OP_0.swift */,
 				65DD5F0A2785741A002C9CA0 /* OP_1NEGATE.swift */,
 				65DD5F0C2785744C002C9CA0 /* OP_N.swift */,
 				65DD5F0E27857497002C9CA0 /* OP_PUSHDATA.swift */,
-				65DD5F10278574F1002C9CA0 /* OP_RESERVED.swift */,
 			);
-			path = PushData;
+			path = Constants;
 			sourceTree = "<group>";
 		};
 		65DD5F1227857514002C9CA0 /* Reserved words */ = {
 			isa = PBXGroup;
 			children = (
+				65DD5ECB27854DDC002C9CA0 /* OP_RESERVED1.swift */,
+				65DD5ECD27854E00002C9CA0 /* OP_RESERVED2.swift */,
+				65DD5F10278574F1002C9CA0 /* OP_RESERVED.swift */,
 				65DD5F132785751F002C9CA0 /* OP_NOPN.swift */,
+				65DD5EF327856FF5002C9CA0 /* OP_VER.swift */,
+				65DD5EF52785704F002C9CA0 /* OP_VERIF.swift */,
+				65DD5EF9278570AB002C9CA0 /* OP_VERNOTIF.swift */,
 			);
 			path = "Reserved words";
 			sourceTree = "<group>";
