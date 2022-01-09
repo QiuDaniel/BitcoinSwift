@@ -165,6 +165,12 @@ extension Data {
             return Data(buffer: UnsafeBufferPointer(start: ptr, count: 1))
         }
     }
+
+    mutating func append<T>(value: T) {
+        withUnsafePointer(to: value) { (ptr: UnsafePointer<T>) in
+            append(UnsafeBufferPointer(start: ptr, count: 1))
+        }
+    }
     
     func to<T>(_ type: T.Type) -> T {
         if type == VarInt.self {

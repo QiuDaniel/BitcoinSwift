@@ -16,7 +16,7 @@ public struct OpSplit: OpCodeType {
         try context.assertStackHeightGreaterThanOrEqual(2)
         let position = try context.number(at: -1)
         let data = context.data(at: -1)
-        guard position < data.count else {
+        guard position <= data.count else {
             throw OpCodeExcutionError.error("Invalid OP_SPLIT range")
         }
         

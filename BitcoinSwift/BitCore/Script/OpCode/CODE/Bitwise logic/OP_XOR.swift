@@ -17,7 +17,7 @@ public struct OpXor: OpCodeType {
         let x1 = context.remove(at: -1)
         
         guard x1.count == x2.count else {
-            throw OpCodeExcutionError.error("Invalid OP_OR size")
+            throw OpCodeExcutionError.error("Invalid OP_XOR size")
         }
         let count = x1.count
         var output = Data(count: count)

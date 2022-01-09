@@ -31,7 +31,7 @@ public extension OPCode {
     /// Returns OP_INVALIDOPCODE for other ints.
     /// - Parameter integer: Int value from -1 to 16
     /// - Returns: The OPCode corresponding to integer
-    static func parse(_ integer: Int) -> Self {
+    static func parseSmallInteger(_ integer: Int) -> Self {
         switch integer {
         case -1:
             return .OP_1NEGATE

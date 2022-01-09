@@ -16,7 +16,7 @@ public struct OpNum2Bin: OpCodeType {
         try context.assertStackHeightGreaterThanOrEqual(2)
         let size = try context.number(at: -1)
         guard size <= BTC_MAX_SCRIPT_ELEMENT_SIZE else {
-            throw OpCodeExcutionError.error("PushedData size is too big.")
+            throw OpCodeExcutionError.error("Push value size limit exceeded.")
         }
         var data = context.data(at: -1)
         guard data.count <= Int(size) else {
