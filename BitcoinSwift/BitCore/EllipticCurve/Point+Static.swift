@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import BigInt
 
 extension Point {
     
@@ -19,7 +20,9 @@ extension Point {
             throw PointError.incorrectByteCountOfPublicKey(expectedByteCount: 65, actual: bytes.count)
         }
         precondition(bytes[0] == 0x04)
-        return Self(x: .init(bytes.subdata(in: 1..<33)), y: .init(bytes.subdata(in: 33..<65)))
+        let x = BigNumber(BigUInt(bytes.subdata(in: 1..<33)))
+        let y = BigNumber(BigUInt(bytes.subdata(in: 33..<65)))
+        return Self(x: x, y: y)
     }
     
     static func parseFromCompressedPublicKey(bytes: Data) throws -> Self {
