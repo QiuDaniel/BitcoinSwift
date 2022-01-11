@@ -13,6 +13,12 @@ public class Script {
     private var dataCache: Data?
     private var stringCache: String?
     
+    // Multisignature script attribute.
+    // If multisig script is not detected, this is nil
+    public typealias MultisigVariables = (nSigRequired: UInt, publickeys: [PublicKey<Secp256k1>])
+    public var multisigRequirements: MultisigVariables?
+
+    
     public var data: Data {
         if let cache = dataCache {
             return cache
@@ -87,6 +93,42 @@ public class Script {
         return code(at: 0) == .OP_0 && dataChunk.pushedData.count == 32
     }
     
+    public var isMultisignatureScript: Bool {
+        guard let requirements = multisigRequirements else {
+            return false
+        }
+        if requirements.nSigRequired == 0 {
+            do {
+                try detectMultisigScript()
+            } catch {
+                return false
+            }
+        }
+        return requirements.nSigRequired > 0
+        
+    }
+    
+    public var isStandardMultisignatureScript: Bool {
+        guard isMultisignatureScript else {
+            return false
+        }
+        guard let multisigPublicKeys = multisigRequirements?.publickeys else { return false }
+        return multisigPublicKeys.count <= 3
+    }
+    
+    public var isStandardOpReturnScript: Bool {
+        guard chunks.count == 2 else {
+            return false
+        }
+        return code(at: 0) == .OP_RETURN
+            && pushedData(at: 1) != nil
+    }
+    
+    // Include both PUSHDATA ops and OP_0..OP_16 literals.
+    public var isDataOnly: Bool {
+        return !chunks.contains { $0.value > OPCode.OP_16 }
+    }
+    
     public init(_ chunks: [ScriptChunk]? = nil) {
         if chunks == nil {
             self.chunks = [ScriptChunk]()
@@ -135,11 +177,71 @@ public class Script {
         }
     }
     
+    // OP_<M> <pubkey1> ... <pubkeyN> OP_<N> OP_CHECKMULTISIG
+    public convenience init?(publicKeys: [PublicKey<Secp256k1>], signaturesRequired: UInt) {
+        // First make sure the arguments make sense.
+        // We need at least one signature
+        guard signaturesRequired > 0 else {
+            return nil
+        }
+
+        // And we cannot have more signatures than available pubkeys.
+        guard publicKeys.count >= signaturesRequired else {
+            return nil
+        }
+
+        // Both M and N should map to OP_<1..16>
+        let mOpcode = OPCode.parseSmallInteger(Int(signaturesRequired))
+        let nOpcode = OPCode.parseSmallInteger(publicKeys.count)
+
+        guard mOpcode != .OP_INVALIDOPCODE else {
+            return nil
+        }
+        guard nOpcode != .OP_INVALIDOPCODE else {
+            return nil
+        }
+        do {
+            self.init()
+            try append(mOpcode)
+            for pubkey in publicKeys {
+                try append(pubkey.data)
+            }
+            try append(nOpcode)
+            try append(.OP_CHECKMULTISIG)
+            multisigRequirements = (signaturesRequired, publicKeys)
+        } catch {
+            return nil
+        }
+    }
+    
 }
 
 // MARK: - Public Method
 
 public extension Script {
+    
+    func toP2SH() -> Script {
+        return try! Script()
+            .append(.OP_HASH160)
+            .append(Crypto.hash160(data))
+            .append(.OP_EQUAL)
+    }
+    
+    func address(_ network: Network = .BTCmainnet) -> BitcoinAddress? {
+        if isP2PKHScript, let pubkeyHash = pushedData(at: 2) {
+            return BitcoinAddress(data: pubkeyHash, network: network, hashType: .pubkeyHash)
+        } else if isP2SHScript, let scriptHash = pushedData(at: 1) {
+            return BitcoinAddress(data: scriptHash, network: network, hashType: .scriptHash)
+        }
+        return nil
+    }
+    
+    func standardOpReturnData() -> Data? {
+        guard isStandardOpReturnScript else {
+            return nil
+        }
+        return pushedData(at: 1)
+    }
     
     func serialize() -> Data {
         let data = rawSerialize()
@@ -163,16 +265,6 @@ public extension Script {
             throw ScriptError.error("Condition branches not balanced.")
         }
     }
-    
-    func address(_ network: Network = .BTCmainnet) -> BitcoinAddress? {
-        if isP2PKHScript, let pubkeyHash = pushedData(at: 2) {
-            return BitcoinAddress(data: pubkeyHash, network: network, hashType: .pubkeyHash)
-        } else if isP2SHScript, let scriptHash = pushedData(at: 1) {
-            return BitcoinAddress(data: scriptHash, network: network, hashType: .scriptHash)
-        }
-        return nil
-    }
-    
     
     @discardableResult
     func append(_ code: OPCode) throws -> Script {
@@ -224,6 +316,49 @@ public extension Script {
 
 private extension Script {
     
+    // If typical multisig tx is detected, sets requirements:
+    private func detectMultisigScript() throws {
+        // multisig script must have at least 4 ops ("OP_1 <pubkey> OP_1 OP_CHECKMULTISIG")
+        guard chunks.count >= 4 else {
+            return
+        }
+
+        // The last op is multisig check.
+        guard code(at: -1) == .OP_CHECKMULTISIG else {
+            return
+        }
+
+        let mOpcode = code(at: 0)
+        let nOpcode = code(at: -2)
+
+        let m: Int = OPCode.smallInteger(from: mOpcode)
+        let n: Int = OPCode.smallInteger(from: nOpcode)
+
+        guard m > 0 && m != Int.max else {
+            return
+        }
+        guard n > 0 && n != Int.max && n >= m else {
+            return
+        }
+
+        // We must have correct number of pubkeys in the script. 3 extra ops: OP_<M>, OP_<N> and OP_CHECKMULTISIG
+        guard chunks.count == 3 + n else {
+            return
+        }
+
+        var pubkeys: [PublicKey<Secp256k1>] = []
+        for i in 0...n {
+            guard let data = pushedData(at: i) else {
+                return
+            }
+            let pubkey = try PublicKey<Secp256k1>(bytes: data)
+            pubkeys.append(pubkey)
+        }
+
+        // Now we extracted all pubkeys and verified the numbers.
+        multisigRequirements = (UInt(m), pubkeys)
+    }
+    
     func rawSerialize() -> Data {
         return data
     }
@@ -250,8 +385,7 @@ private extension Script {
     func invalidateSerialization() {
         dataCache = nil
         stringCache = nil
-        // FIXME: - 需要考虑这个
-//        multisigRequirements = nil
+        multisigRequirements = nil
     }
     
     func update(with updatedData: Data) throws {

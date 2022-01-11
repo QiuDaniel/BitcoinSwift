@@ -50,6 +50,7 @@
 		65A58C2C278967DD00F73E40 /* OPCodeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65A58C2B278967DD00F73E40 /* OPCodeTests.swift */; };
 		65A58C2E278B1C4B00F73E40 /* ScriptTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65A58C2D278B1C4B00F73E40 /* ScriptTests.swift */; };
 		65A58C30278C0CDE00F73E40 /* TransactionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65A58C2F278C0CDE00F73E40 /* TransactionTests.swift */; };
+		65A58C34278D5A4900F73E40 /* ScriptMachine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65A58C33278D5A4900F73E40 /* ScriptMachine.swift */; };
 		65DD5DC8277C5F31002C9CA0 /* PublicKey+Address.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65DD5DC7277C5F31002C9CA0 /* PublicKey+Address.swift */; };
 		65DD5DCA277C5FAE002C9CA0 /* PublicKeyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65DD5DC9277C5FAE002C9CA0 /* PublicKeyTests.swift */; };
 		65DD5DCD277C639A002C9CA0 /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65DD5DCC277C639A002C9CA0 /* Transaction.swift */; };
@@ -223,6 +224,7 @@
 		65A58C2B278967DD00F73E40 /* OPCodeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OPCodeTests.swift; sourceTree = "<group>"; };
 		65A58C2D278B1C4B00F73E40 /* ScriptTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScriptTests.swift; sourceTree = "<group>"; };
 		65A58C2F278C0CDE00F73E40 /* TransactionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionTests.swift; sourceTree = "<group>"; };
+		65A58C33278D5A4900F73E40 /* ScriptMachine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScriptMachine.swift; sourceTree = "<group>"; };
 		65DD5DC7277C5F31002C9CA0 /* PublicKey+Address.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PublicKey+Address.swift"; sourceTree = "<group>"; };
 		65DD5DC9277C5FAE002C9CA0 /* PublicKeyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicKeyTests.swift; sourceTree = "<group>"; };
 		65DD5DCC277C639A002C9CA0 /* Transaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transaction.swift; sourceTree = "<group>"; };
@@ -520,9 +522,10 @@
 			children = (
 				65DD5DD5277C6CDD002C9CA0 /* OpCode */,
 				65DD5DD3277C68A9002C9CA0 /* Script.swift */,
+				65DD5F4D2785A058002C9CA0 /* Script+Static.swift */,
 				65DD5E86278458A0002C9CA0 /* ScriptExecutionContext.swift */,
 				65DD5F4927858CFD002C9CA0 /* ScriptChunk.swift */,
-				65DD5F4D2785A058002C9CA0 /* Script+Static.swift */,
+				65A58C33278D5A4900F73E40 /* ScriptMachine.swift */,
 			);
 			path = Script;
 			sourceTree = "<group>";
@@ -891,6 +894,7 @@
 				65DD5F11278574F1002C9CA0 /* OP_RESERVED.swift in Sources */,
 				65DD5EB327854AB1002C9CA0 /* OP_NOT.swift in Sources */,
 				657BD5612775B90C00B8E0D5 /* Secp256k1.swift in Sources */,
+				65A58C34278D5A4900F73E40 /* ScriptMachine.swift in Sources */,
 				65DD5E832783EA54002C9CA0 /* Block.swift in Sources */,
 				65DD5ECA27854DB3002C9CA0 /* OP_OR.swift in Sources */,
 				65DD5E7D277E061B002C9CA0 /* MerkleBlock.swift in Sources */,

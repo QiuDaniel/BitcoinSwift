@@ -38,6 +38,14 @@ public struct PublicKey<Curve: EllipticCurve> {
         let point = Curve.G * privateKey.secret
         self.init(point: point, isCompressed: isCompressed, network: privateKey.network)
     }
+    
+    init(bytes data: Data, network: Network = .BTCmainnet) throws {
+        self.data = data
+        self.network = network
+        let header = data[0]
+        self.isCompressed = (header == 0x02 || header == 0x03)
+        self.point = try Point(data: data)
+    }
 }
 
 extension PublicKey: Equatable {}
