@@ -29,18 +29,42 @@ public enum ScriptError: Error {
 
 extension Script {
     
+    // Standard Transaction to Bitcoin address (pay-to-pubkey-hash)
+    // scriptPubKey: OP_DUP OP_HASH160 <pubKeyHash> OP_EQUALVERIFY OP_CHECKSIG
+    public static func p2pkhScript(_ pubKeyHash: Data) throws -> Script {
+        let script = try Script()
+            .append(.OP_DUP)
+            .append(.OP_HASH160)
+            .append(pubKeyHash)
+            .append(.OP_EQUALVERIFY)
+            .append(.OP_CHECKSIG)
+        return script
+    }
+    
+    // OP_HASH160 <hash> OP_EQUAL
+    public static func p2shScript(_ pubKeyHash: Data) throws -> Script {
+        let script = try Script().append(.OP_HASH160).append(pubKeyHash).append(.OP_EQUAL)
+        return script
+    }
+    
     static func parse(_ data: Data) throws -> [ScriptChunk] {
         guard !data.isEmpty else {
             return [ScriptChunk]()
         }
         var chunks = [ScriptChunk]()
-
+        var subData = data
         var i: Int = 0
-        let count: Int = data.count
-
-        while i < count {
+        let stream = ByteStream(data)
+        var length = stream.read(VarInt.self).underlyingValue
+        if length < data.count && stream.availableByteCount == length { // if data is serialize
+            subData = stream.read(Data.self, count: Int(length))
+        } else { // data is raw data
+            length = UInt64(data.count)
+        }
+        
+        while i < length {
             // Exit if failed to parse
-            let chunk = try parse(from: data, offset: i)
+            let chunk = try parse(from: subData, offset: i)
             chunks.append(chunk)
             i += chunk.range.count
         }

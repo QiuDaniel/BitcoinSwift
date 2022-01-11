@@ -13,7 +13,7 @@ public struct PrivateKey<T>: Equatable where T: EllipticCurve {
     public let secret: BigNumber
     public let network: Network
     
-    init(network: Network = .BTCmainnet) {
+    public init(network: Network = .BTCmainnet) {
         let byteCount = (T.N - 1).bit256Data().byteCount
         var key: PrivateKey!
         repeat {
@@ -26,7 +26,7 @@ public struct PrivateKey<T>: Equatable where T: EllipticCurve {
         self = key
     }
     
-    init?(secret: BigNumber, network: Network = .BTCmainnet) {
+    public init?(secret: BigNumber, network: Network = .BTCmainnet) {
         guard case 1..<T.N = secret else {
             return nil
         }
@@ -34,19 +34,19 @@ public struct PrivateKey<T>: Equatable where T: EllipticCurve {
         self.secret = secret
     }
     
-    init?(hex: String, network: Network = .BTCmainnet) {
+    public init?(hex: String, network: Network = .BTCmainnet) {
         guard let secret = BigNumber(hex: hex) else {
             return nil
         }
         self.init(secret: secret, network: network)
     }
     
-    init?(data: Data, network: Network = .BTCmainnet) {
+    public init?(data: Data, network: Network = .BTCmainnet) {
         let secret = BigNumber(data: data)
         self.init(secret: secret, network: network)
     }
     
-    init?(wif: String) throws {
+    public init?(wif: String) throws {
         // wif格式有前缀及压缩格式需增加后缀
         guard var payload = Base58Check.decode(wif), (payload.count == 33 || payload.count == 34) else {
             throw PrivateKeyError.invalidFormat
@@ -64,7 +64,12 @@ public struct PrivateKey<T>: Equatable where T: EllipticCurve {
         self.init(data: payload.prefix(32), network: network)
     }
     
-    func toWIF(isCompressed: Bool = true) -> String {
+    public func toPublickKey() -> PublicKey<T> {
+        let header = data[0]
+        return PublicKey(privateKey: self, isCompressed: (header == 0x02 || header == 0x03))
+    }
+    
+    public func toWIF(isCompressed: Bool = true) -> String {
         var payload = Data([network.privateKey]) + data
         if isCompressed {
             payload.append(Data(0x01))
@@ -72,7 +77,7 @@ public struct PrivateKey<T>: Equatable where T: EllipticCurve {
         return Base58Check.encode(payload)
     }
     
-    func sign<H>(message: Message, function: H) -> Signature<T>? where H: HashFunction {
+    public func sign<H>(message: Message, function: H) -> Signature<T>? where H: HashFunction {
         let z: NumberConvertible = message
         var r: BigNumber = 0
         var s: BigNumber = 0
@@ -88,6 +93,10 @@ public struct PrivateKey<T>: Equatable where T: EllipticCurve {
             s = T.modN { (z + r * secret) * kInverse }
         } while s.isZero
         return Signature<T>(r: r, s: s)
+    }
+    
+    public func sign(message: Message) -> Signature<T>? {
+        return sign(message: message, function: SHA256())
     }
     
     

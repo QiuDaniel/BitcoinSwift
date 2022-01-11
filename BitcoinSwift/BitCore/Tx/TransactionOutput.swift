@@ -28,8 +28,7 @@ public struct TransactionOutput {
     public func serialize() -> Data {
         var result = Data.empty
         result += amount.littleEndian.data
-        result += scriptLength.serialize()
-        result += scriptPubkey.data
+        result += scriptPubkey.serialize()
         return result
     }
 }

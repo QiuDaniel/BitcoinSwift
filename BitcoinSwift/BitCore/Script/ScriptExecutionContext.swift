@@ -46,7 +46,7 @@ public final class ScriptExcutionContext {
         self.verbose = verbose
     }
     
-    public init?(transaction: Transaction, utxoToVerify: TransactionOutput, inputIndex: UInt32) {
+    public init?(transaction: Transaction, utxoToVerify: TransactionOutput, inputIndex: UInt32, verbose: Bool = false) {
         guard transaction.inputs.count > inputIndex else {
             return nil
         }
@@ -54,6 +54,7 @@ public final class ScriptExcutionContext {
         self.utxoToVerify = utxoToVerify
         self.txinToVerify = transaction.inputs[Int(inputIndex)]
         self.inputIndex = inputIndex
+        self.verbose = verbose
     }
 }
 
@@ -64,12 +65,12 @@ public extension ScriptExcutionContext {
     }
     
     func push(_ n: Int32) {
-        stack.append(BigNumber(n.littleEndian).data)
+        stack.append(encode(n))
     }
     
     func push(_ data: Data) throws {
         guard data.count <= BTC_MAX_SCRIPT_ELEMENT_SIZE else {
-            throw OpCodeExcutionError.error("PushedData size is too big.")
+            throw OpCodeExcutionError.error("Push value size limit exceeded")
         }
         stack.append(data)
     }
@@ -135,7 +136,7 @@ public extension ScriptExcutionContext {
         guard data.count <= 4 else {
             throw OpCodeExcutionError.invalidBigNumber
         }
-        return data.to(Int32.self)
+        return decode(data)
     }
     
     func bool(at i: Int, pop: Bool = true) -> Bool {
@@ -194,6 +195,93 @@ private extension ScriptExcutionContext {
     
     func normalized(_ index: Int) -> Int {
         return (index < 0) ? stack.count + index : index
+    }
+    
+    func encode(_ num: Int32) -> Data {
+        if num == 0 {
+            return .empty
+        }
+        let isNegative = num < 0
+        var value: UInt32 = isNegative ? UInt32(-num) : UInt32(num)
+        var result = Data.empty
+        repeat {
+            result.append(UInt8(value & 0xff))
+            value >>= 8
+        } while value > 0
+        if result.last! & 0x80 > 0 {
+            isNegative ? result.append(0x80) : result.append(0x00)
+        } else if isNegative {
+            var last = result.removeLast()
+            last |= 0x80
+            result.append(last)
+        }
+        return result
+    }
+    
+    func decode(_ data: Data) -> Int32 {
+        if data == .empty {
+            return 0
+        }
+        let bigEndian = Data(data.reversed()).bytes
+        var result: UInt32 = 0
+        let isNegative: Bool
+        if bigEndian[0] & 0x80 > 0 {
+            isNegative = true
+            result = UInt32(bigEndian[0] & 0x7f)
+        } else {
+            isNegative = false
+            result = UInt32(bigEndian[0])
+        }
+        for c in bigEndian[1..<bigEndian.count] {
+            result <<= 8
+            result += UInt32(c)
+        }
+        return isNegative ? -Int32(result) : Int32(result)
+    }
+    
+    func encodeNum(_ num: Int32) -> Data {
+        let isNegative: Bool = num < 0
+        var value: UInt32 = isNegative ? UInt32(-num) : UInt32(num)
+
+        var data = Data(bytes: &value, count: MemoryLayout.size(ofValue: value))
+        while data.last == 0 {
+            data.removeLast()
+        }
+
+        var bytes: [UInt8] = []
+        for d in data.reversed() {
+            if bytes.isEmpty && d >= 0x80 {
+                bytes.append(0)
+            }
+            bytes.append(d)
+        }
+
+        if isNegative {
+            let first = bytes.removeFirst()
+            bytes.insert(first + 0x80, at: 0)
+        }
+
+        let bignum = Data(bytes.reversed())
+        return bignum
+    }
+    
+    func decodeNum(_ element: Data) -> Int32 {
+        guard !element.isEmpty else {
+            return 0
+        }
+        var data = element
+        var bytes = [UInt8]()
+        var last = data.removeLast()
+        let isNegative: Bool = last >= 0x80
+        while !data.isEmpty {
+            bytes.append(data.removeFirst())
+        }
+        if isNegative {
+            last -= 0x80
+        }
+        bytes.append(last)
+        let value: Int32 = Data(bytes).to(Int32.self)
+        return isNegative ? -value : value
     }
     
 }

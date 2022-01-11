@@ -14,18 +14,17 @@ public struct TransactionInput {
     let scriptSig: Script
     let sequence: UInt32
     
-    init(prevTx: Data, prevIndex: UInt32, scriptSig: Script, sequence: UInt32 = 0xFFFFFFFF) {
+    public init(prevTx: Data, prevIndex: UInt32, scriptSig: Script? = nil, sequence: UInt32 = 0xFFFFFFFF) {
         self.prevTx = prevTx
         self.prevIndex = prevIndex
-        self.scriptSig = scriptSig
+        self.scriptSig = scriptSig == nil ? Script() : scriptSig!
         self.sequence = sequence
     }
     
-    func serialize() -> Data {
+    public func serialize() -> Data {
         var result = Data(prevTx.reversed())
         result += prevIndex.littleEndian.data
-        result += VarInt(scriptSig.data.count).serialize()
-        result += scriptSig.data
+        result += scriptSig.serialize()
         result += sequence.littleEndian.data
         return result
     }

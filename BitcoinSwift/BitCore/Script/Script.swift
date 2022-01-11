@@ -87,7 +87,7 @@ public class Script {
         return code(at: 0) == .OP_0 && dataChunk.pushedData.count == 32
     }
     
-    init(_ chunks: [ScriptChunk]? = nil) {
+    public init(_ chunks: [ScriptChunk]? = nil) {
         if chunks == nil {
             self.chunks = [ScriptChunk]()
         } else {
@@ -95,7 +95,7 @@ public class Script {
         }
     }
     
-    convenience init?(_ data: Data) {
+    public convenience init?(_ data: Data) {
         do {
             let chunks = try Script.parse(data)
             self.init(chunks)
@@ -104,9 +104,35 @@ public class Script {
         }
     }
     
-    convenience init?(hex: String) {
+    public convenience init?(hex: String) {
         let data = Data(hex: hex)
         self.init(data)
+    }
+    
+    public convenience init?(address: BitcoinAddress) {
+        self.init()
+        switch address.hashType {
+        case .pubkeyHash:
+            // OP_DUP OP_HASH160 <hash> OP_EQUALVERIFY OP_CHECKSIG
+            do {
+                try self.append(.OP_DUP)
+                    .append(.OP_HASH160)
+                    .append(address.data)
+                    .append(.OP_EQUALVERIFY)
+                    .append(.OP_CHECKSIG)
+            } catch {
+                return nil
+            }
+        case .scriptHash:
+            // OP_HASH160 <hash> OP_EQUAL
+            do {
+                try self.append(.OP_HASH160)
+                    .append(address.data)
+                    .append(.OP_EQUAL)
+            } catch {
+                return nil
+            }
+        }
     }
     
 }
@@ -114,6 +140,12 @@ public class Script {
 // MARK: - Public Method
 
 public extension Script {
+    
+    func serialize() -> Data {
+        let data = rawSerialize()
+        let varInt = VarInt(data.count)
+        return varInt.data + data
+    }
     
     func excute(_ context: ScriptExcutionContext) throws {
         try chunks.forEach { chunk in
@@ -141,6 +173,45 @@ public extension Script {
         return nil
     }
     
+    
+    @discardableResult
+    func append(_ code: OPCode) throws -> Script {
+        let invalidCodes: [OPCode] = [.OP_PUSHDATA1, .OP_PUSHDATA2, .OP_PUSHDATA4, .OP_INVALIDOPCODE]
+        guard !invalidCodes.contains(where: { $0 == code }) else {
+            throw ScriptError.error("\(code.name) cannot be executed alone.")
+        }
+        var updateData = data
+        updateData += Data(code.value)
+        try update(with: updateData)
+        return self
+    }
+    
+    @discardableResult
+    func append(_ data: Data) throws -> Script {
+        guard !data.isEmpty else {
+            throw ScriptError.error("Data is empty")
+        }
+        guard let addedScriptData = Script.script(forData: data, encodingLength: -1) else {
+            throw ScriptError.error("Parse data to pushdata failed.")
+        }
+        var updateData = self.data
+        updateData += addedScriptData
+        try update(with: updateData)
+        return self
+    }
+    
+    @discardableResult
+    func append(_ script: Script) throws -> Script {
+        guard !script.data.isEmpty else {
+            throw ScriptError.error("Script is empty")
+        }
+        var updateData = data
+        updateData += script.data
+        try update(with: updateData)
+        return self
+    }
+
+    
     @discardableResult
     func deleteOccurrences(of code: OPCode) throws -> Script {
         let updatedData = chunks.filter { $0.code != code }.reduce(Data.empty) { $0 + $1.chunkData }
@@ -152,6 +223,10 @@ public extension Script {
 // MARK: - Private Method
 
 private extension Script {
+    
+    func rawSerialize() -> Data {
+        return data
+    }
 
     func chunk(at i: Int) -> ScriptChunk {
         let index = i < 0 ? chunks.count + i : i
@@ -183,43 +258,6 @@ private extension Script {
         let updataeChunks = try Script.parse(updatedData)
         chunks = updataeChunks
         invalidateSerialization()
-    }
-    
-    @discardableResult
-    func append(_ code: OPCode) throws -> Script {
-        let invalidCodes: [OPCode] = [.OP_PUSHDATA1, .OP_PUSHDATA2, .OP_PUSHDATA4, .OP_INVALIDOPCODE]
-        guard !invalidCodes.contains(where: { $0 == code }) else {
-            throw ScriptError.error("\(code.name) cannot be executed alone.")
-        }
-        var updateData = data
-        updateData += Data(code.value)
-        try update(with: updateData)
-        return self
-    }
-    
-    @discardableResult
-    func append(_ data: Data) throws -> Script {
-        guard !data.isEmpty else {
-            throw ScriptError.error("Data is empty")
-        }
-        guard let addedScriptData = Script.script(forData: data, encodingLength: -1) else {
-            throw ScriptError.error("Parse data to pushdata failed.")
-        }
-        var updateData = data
-        updateData += addedScriptData
-        try update(with: updateData)
-        return self
-    }
-    
-    @discardableResult
-    func append(_ script: Script) throws -> Script {
-        guard !script.data.isEmpty else {
-            throw ScriptError.error("Script is empty")
-        }
-        var updateData = data
-        updateData += script.data
-        try update(with: updateData)
-        return self
     }
     
     @discardableResult

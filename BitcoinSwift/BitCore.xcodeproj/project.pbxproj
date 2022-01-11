@@ -47,6 +47,9 @@
 		657BD57D277B20BC00B8E0D5 /* PublicKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 657BD57C277B20BC00B8E0D5 /* PublicKey.swift */; };
 		657BD617277C450A00B8E0D5 /* BitcoinAddress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 657BD616277C450A00B8E0D5 /* BitcoinAddress.swift */; };
 		65A58C2A2787F1E400F73E40 /* ECDSA.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65A58C292787F1E400F73E40 /* ECDSA.swift */; };
+		65A58C2C278967DD00F73E40 /* OPCodeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65A58C2B278967DD00F73E40 /* OPCodeTests.swift */; };
+		65A58C2E278B1C4B00F73E40 /* ScriptTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65A58C2D278B1C4B00F73E40 /* ScriptTests.swift */; };
+		65A58C30278C0CDE00F73E40 /* TransactionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65A58C2F278C0CDE00F73E40 /* TransactionTests.swift */; };
 		65DD5DC8277C5F31002C9CA0 /* PublicKey+Address.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65DD5DC7277C5F31002C9CA0 /* PublicKey+Address.swift */; };
 		65DD5DCA277C5FAE002C9CA0 /* PublicKeyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65DD5DC9277C5FAE002C9CA0 /* PublicKeyTests.swift */; };
 		65DD5DCD277C639A002C9CA0 /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65DD5DCC277C639A002C9CA0 /* Transaction.swift */; };
@@ -217,6 +220,9 @@
 		657BD57C277B20BC00B8E0D5 /* PublicKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicKey.swift; sourceTree = "<group>"; };
 		657BD616277C450A00B8E0D5 /* BitcoinAddress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BitcoinAddress.swift; sourceTree = "<group>"; };
 		65A58C292787F1E400F73E40 /* ECDSA.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ECDSA.swift; sourceTree = "<group>"; };
+		65A58C2B278967DD00F73E40 /* OPCodeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OPCodeTests.swift; sourceTree = "<group>"; };
+		65A58C2D278B1C4B00F73E40 /* ScriptTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScriptTests.swift; sourceTree = "<group>"; };
+		65A58C2F278C0CDE00F73E40 /* TransactionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionTests.swift; sourceTree = "<group>"; };
 		65DD5DC7277C5F31002C9CA0 /* PublicKey+Address.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PublicKey+Address.swift"; sourceTree = "<group>"; };
 		65DD5DC9277C5FAE002C9CA0 /* PublicKeyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicKeyTests.swift; sourceTree = "<group>"; };
 		65DD5DCC277C639A002C9CA0 /* Transaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transaction.swift; sourceTree = "<group>"; };
@@ -417,6 +423,9 @@
 				65DD5E77277DAB1B002C9CA0 /* MerkleTreeTests.swift */,
 				65DD5E80277EA86D002C9CA0 /* MerkleBlockTests.swift */,
 				65DD5E842783FC3A002C9CA0 /* BlockTests.swift */,
+				65A58C2B278967DD00F73E40 /* OPCodeTests.swift */,
+				65A58C2D278B1C4B00F73E40 /* ScriptTests.swift */,
+				65A58C2F278C0CDE00F73E40 /* TransactionTests.swift */,
 			);
 			path = BitCoreTests;
 			sourceTree = "<group>";
@@ -987,12 +996,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				65A58C2E278B1C4B00F73E40 /* ScriptTests.swift in Sources */,
 				65DD5DCA277C5FAE002C9CA0 /* PublicKeyTests.swift in Sources */,
 				65DD5E852783FC3A002C9CA0 /* BlockTests.swift in Sources */,
 				65077253274F7E23006500C1 /* BitCoreTests.swift in Sources */,
+				65A58C30278C0CDE00F73E40 /* TransactionTests.swift in Sources */,
 				657BD5462773238700B8E0D5 /* Base58Tests.swift in Sources */,
 				65DD5E78277DAB1B002C9CA0 /* MerkleTreeTests.swift in Sources */,
 				657BD5562775658F00B8E0D5 /* RIPEMD160Tests.swift in Sources */,
+				65A58C2C278967DD00F73E40 /* OPCodeTests.swift in Sources */,
 				657BD5642775C04900B8E0D5 /* MathTests.swift in Sources */,
 				657BD57027799EE600B8E0D5 /* DERTests.swift in Sources */,
 				657BD558277566FB00B8E0D5 /* SHA2Tests.swift in Sources */,

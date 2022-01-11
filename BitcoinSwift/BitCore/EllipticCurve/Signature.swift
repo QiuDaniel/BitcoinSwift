@@ -30,7 +30,7 @@ public struct Signature<T>: Equatable, CustomStringConvertible where T: Elliptic
         self.init(r: r, s: s)
     }
     
-    var der: String {
+    public var der: String {
         return DER.encode(r: r, s: s)
     }
 }

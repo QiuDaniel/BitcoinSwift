@@ -9,21 +9,21 @@ import Foundation
 
 public struct Transaction {
     
-    var id: String {
+    public var id: String {
         return hash.hex
     }
     
-    var hash: Data {
+    public var hash: Data {
         let hash256 = Crypto.hash256(self.serialize())
         return Data(hash256.reversed())
     }
     
-    let version: UInt32
-    let inputs: [TransactionInput]
-    let outputs: [TransactionOutput]
-    let lockTime: UInt32
+    public let version: UInt32
+    public let inputs: [TransactionInput]
+    public let outputs: [TransactionOutput]
+    public let lockTime: UInt32
     
-    init(version: UInt32, inputs: [TransactionInput], outputs: [TransactionOutput], lockTime: UInt32) {
+    public init(version: UInt32, inputs: [TransactionInput], outputs: [TransactionOutput], lockTime: UInt32) {
         self.version = version
         self.inputs = inputs
         self.outputs = outputs
@@ -32,7 +32,7 @@ public struct Transaction {
     
     //FIXME: - segwit
     
-    func serialize() -> Data {
+    public func serialize() -> Data {
         var result = version.littleEndian.data
         result += VarInt(inputs.count).serialize()
         result += inputs.flatMap{ $0.serialize() }
@@ -43,7 +43,28 @@ public struct Transaction {
         return result
     }
     
-    
+    public func signHash(_ index: Int, redeemScript: Script? = nil) -> Data {
+        var result = version.littleEndian.data
+        result += VarInt(inputs.count).serialize()
+        for (i, input) in inputs.enumerated() {
+            var scriptSig: Script? = nil
+            if i == index {
+                if redeemScript != nil {
+                    scriptSig = redeemScript!
+                } else {
+                    // FIXME: - the previous tx's ScriptPubkey is the ScriptSig, need url get
+//                    scriptSig = input.
+                }
+            }
+            result += TransactionInput(prevTx: input.prevTx, prevIndex: input.prevIndex, scriptSig: scriptSig, sequence: input.sequence).serialize()
+        }
+        result += VarInt(outputs.count).serialize()
+        result += outputs.flatMap{ $0.serialize() }
+        result += lockTime.littleEndian.data
+        result += BTCSigHashType.ALL.uint32.littleEndian.data
+        let hash256 = Crypto.hash256(result)
+        return hash256
+    }
     
 }
 
