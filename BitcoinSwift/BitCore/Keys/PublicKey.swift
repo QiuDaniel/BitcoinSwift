@@ -15,6 +15,10 @@ public struct PublicKey<Curve: EllipticCurve> {
     public let data: Data
     public let network: Network
     
+    public var pubkeyHash: Data {
+        return Crypto.hash160(data)
+    }
+    
     init(point: ECCPoint, isCompressed: Bool = true, network: Network = .BTCmainnet) {
         self.point = point
         self.isCompressed = isCompressed

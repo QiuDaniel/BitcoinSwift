@@ -775,7 +775,6 @@ class OPCodeTests: XCTestCase {
         let prevTxID = "1524ca4eeb9066b4765effd472bc9e869240c4ecb5c1ee0edb40f8b666088231"
         let hash = Data(hex: prevTxID)
         let index: UInt32 = 1
-//        let outpoint = TransactionOutPoint(hash: hash, index: index)
 
         let balance: UInt64 = 169012961
 

@@ -236,19 +236,11 @@ extension Script {
             return [ScriptChunk]()
         }
         var chunks = [ScriptChunk]()
-        var subData = data
         var i: Int = 0
-        let stream = ByteStream(data)
-        var length = stream.read(VarInt.self).underlyingValue
-        if length < data.count && stream.availableByteCount == length { // if data is serialize
-            subData = stream.read(Data.self, count: Int(length))
-        } else { // data is raw data
-            length = UInt64(data.count)
-        }
-        
+        let length = data.count
         while i < length {
             // Exit if failed to parse
-            let chunk = try parse(from: subData, offset: i)
+            let chunk = try parse(from: data, offset: i)
             chunks.append(chunk)
             i += chunk.range.count
         }
