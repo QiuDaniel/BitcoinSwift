@@ -52,6 +52,8 @@
 		65A58C30278C0CDE00F73E40 /* TransactionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65A58C2F278C0CDE00F73E40 /* TransactionTests.swift */; };
 		65A58C34278D5A4900F73E40 /* ScriptMachine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65A58C33278D5A4900F73E40 /* ScriptMachine.swift */; };
 		65A58C36278D67F900F73E40 /* ScriptMachineTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65A58C35278D67F900F73E40 /* ScriptMachineTests.swift */; };
+		65A58C39278DAF9E00F73E40 /* NetworkEnvelope.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65A58C38278DAF9E00F73E40 /* NetworkEnvelope.swift */; };
+		65A58C3B278DB5C100F73E40 /* NetworkEnvelopeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65A58C3A278DB5C100F73E40 /* NetworkEnvelopeTests.swift */; };
 		65DD5DC8277C5F31002C9CA0 /* PublicKey+Address.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65DD5DC7277C5F31002C9CA0 /* PublicKey+Address.swift */; };
 		65DD5DCA277C5FAE002C9CA0 /* PublicKeyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65DD5DC9277C5FAE002C9CA0 /* PublicKeyTests.swift */; };
 		65DD5DCD277C639A002C9CA0 /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65DD5DCC277C639A002C9CA0 /* Transaction.swift */; };
@@ -227,6 +229,8 @@
 		65A58C2F278C0CDE00F73E40 /* TransactionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionTests.swift; sourceTree = "<group>"; };
 		65A58C33278D5A4900F73E40 /* ScriptMachine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScriptMachine.swift; sourceTree = "<group>"; };
 		65A58C35278D67F900F73E40 /* ScriptMachineTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScriptMachineTests.swift; sourceTree = "<group>"; };
+		65A58C38278DAF9E00F73E40 /* NetworkEnvelope.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkEnvelope.swift; sourceTree = "<group>"; };
+		65A58C3A278DB5C100F73E40 /* NetworkEnvelopeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkEnvelopeTests.swift; sourceTree = "<group>"; };
 		65DD5DC7277C5F31002C9CA0 /* PublicKey+Address.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PublicKey+Address.swift"; sourceTree = "<group>"; };
 		65DD5DC9277C5FAE002C9CA0 /* PublicKeyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicKeyTests.swift; sourceTree = "<group>"; };
 		65DD5DCC277C639A002C9CA0 /* Transaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transaction.swift; sourceTree = "<group>"; };
@@ -385,6 +389,7 @@
 		65077246274F7E23006500C1 /* BitCore */ = {
 			isa = PBXGroup;
 			children = (
+				65A58C37278DAF8900F73E40 /* Message */,
 				65A58C282787F1D600F73E40 /* Signing */,
 				65DD5E7B277E0602002C9CA0 /* Block */,
 				65DD5DD2277C689E002C9CA0 /* Script */,
@@ -431,6 +436,7 @@
 				65A58C2D278B1C4B00F73E40 /* ScriptTests.swift */,
 				65A58C2F278C0CDE00F73E40 /* TransactionTests.swift */,
 				65A58C35278D67F900F73E40 /* ScriptMachineTests.swift */,
+				65A58C3A278DB5C100F73E40 /* NetworkEnvelopeTests.swift */,
 			);
 			path = BitCoreTests;
 			sourceTree = "<group>";
@@ -508,6 +514,14 @@
 				65A58C292787F1E400F73E40 /* ECDSA.swift */,
 			);
 			path = Signing;
+			sourceTree = "<group>";
+		};
+		65A58C37278DAF8900F73E40 /* Message */ = {
+			isa = PBXGroup;
+			children = (
+				65A58C38278DAF9E00F73E40 /* NetworkEnvelope.swift */,
+			);
+			path = Message;
 			sourceTree = "<group>";
 		};
 		65DD5DCB277C6373002C9CA0 /* Tx */ = {
@@ -869,6 +883,7 @@
 				65DD5EA327854910002C9CA0 /* OP_LESSTHAN.swift in Sources */,
 				65DD5EAF27854A51002C9CA0 /* OP_MUL.swift in Sources */,
 				65DD5DD7277C6D44002C9CA0 /* OPCode.swift in Sources */,
+				65A58C39278DAF9E00F73E40 /* NetworkEnvelope.swift in Sources */,
 				65DD5F3C27857C32002C9CA0 /* OP_PICK.swift in Sources */,
 				65DD5E8D27853CB8002C9CA0 /* OP_1ADD.swift in Sources */,
 				657BD5752779B5F700B8E0D5 /* Network.swift in Sources */,
@@ -1009,6 +1024,7 @@
 				65DD5E852783FC3A002C9CA0 /* BlockTests.swift in Sources */,
 				65077253274F7E23006500C1 /* BitCoreTests.swift in Sources */,
 				65A58C30278C0CDE00F73E40 /* TransactionTests.swift in Sources */,
+				65A58C3B278DB5C100F73E40 /* NetworkEnvelopeTests.swift in Sources */,
 				657BD5462773238700B8E0D5 /* Base58Tests.swift in Sources */,
 				65DD5E78277DAB1B002C9CA0 /* MerkleTreeTests.swift in Sources */,
 				657BD5562775658F00B8E0D5 /* RIPEMD160Tests.swift in Sources */,
