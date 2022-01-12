@@ -52,5 +52,28 @@ class ScriptTests: XCTestCase {
         let address4 = "2N3u1R6uwQfuobCqbCgBkpsgBxvr1tZpe7B"
         XCTAssertEqual(p2shPubkey.address(.BTCtestnet)?.legacy, address4)
     }
+    
+    func testStandardScript() {
+        let script = Script(Data(hex: "76a9147ab89f9fae3f8043dcee5f7b5467a0f0a6e2f7e188ac"))!
+        XCTAssertTrue(script.isP2PKHScript, "should be regular hash160 script")
+        
+        let address = try! BitcoinAddress("1CBtcGivXmHQ8ZqdPgeMfcpQNJrqTrSAcG")
+        let script2 = Script(address: address)
+        XCTAssertEqual(script2!.data, script.data, "script created from extracted address should be the same as the original script")
+        XCTAssertEqual(script2!.string, script.string, "script created from extracted address should be the same as the original script")
+    }
+    
+//    func testCreate2of3MultisigScript() {
+//        let aliceKey = try! PrivateKey<Secp256k1>(wif: "cNaP9iG9DaNNemnVa2LXvw4rby5Xc4k6qydENQmLBm2aD7gD7GJi")
+//        let bobKey = try! PrivateKey<Secp256k1>(wif: "cSZEkc5cpjjmfK8E9MbTmHwmzck8MokK5Wd9LMTv59qdNSQNGBbG")
+//        let charlieKey = try! PrivateKey<Secp256k1>(wif: "cUJiRP3A2KoCVi7fwYBGTKUaiHKgvT9CSiXpoGJdbYP9kEqHKU4q")
+//
+//        let redeemScript = Script(publicKeys: [aliceKey!.toPublicKey(), bobKey!.toPublicKey(), charlieKey!.toPublicKey()], signaturesRequired: 2)
+//        XCTAssertNotNil(redeemScript)
+//        let p2shScript = redeemScript!.toP2SH()
+//        XCTAssertEqual(p2shScript.hex, "a914629a500c5eaac9261cac990c72241a959ff2d3d987")
+//        let multisigAddr = redeemScript!.address(.BTCtestnet)!
+////        XCTAssertEqual(multisigAddr.cashaddr, "bchtest:pp3f55qvt64vjfsu4jvscu3yr22eluknmyt3nkwcx2", "multisig address should be the same as address created from bitcoin-ruby.")
+//    }
 
 }

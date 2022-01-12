@@ -33,11 +33,6 @@ extension String: BinaryConvertible {
         return encodedData
     }
     
-//    @inlinable
-//    public var bytes: Array<UInt8> {
-//        self.data(using: .utf8, allowLossyConversion: true)?.bytes ?? Array(utf8)
-//    }
-    
     func toData(encodingForced: String.Encoding = .default) -> Data {
         guard let encodedData = self.data(using: encodingForced) else {
             incorrectImplementation("Should always be able to encode string to data")

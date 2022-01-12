@@ -64,7 +64,7 @@ public struct PrivateKey<T>: Equatable where T: EllipticCurve {
         self.init(data: payload.prefix(32), network: network)
     }
     
-    public func toPublickKey() -> PublicKey<T> {
+    public func toPublicKey() -> PublicKey<T> {
         let header = data[0]
         return PublicKey(privateKey: self, isCompressed: (header == 0x02 || header == 0x03))
     }

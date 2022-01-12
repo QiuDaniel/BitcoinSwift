@@ -7,6 +7,13 @@
 
 import Foundation
 
+public enum AddressError: Error {
+    case invalid
+    case invalidScheme
+    case invalidVersionByte
+    case invalidDataSize
+}
+
 public struct BitcoinAddress {
     
     public enum HashType: UInt8 {
@@ -32,5 +39,36 @@ public struct BitcoinAddress {
         self.data = data
         self.network = network
         self.hashType = hashType
+    }
+    
+    init(_ legacy: String) throws {
+        guard let pubkeyHash = Base58Check.decode(legacy) else {
+            throw AddressError.invalid
+        }
+        
+        let networkVersionByte = pubkeyHash[0]
+        switch networkVersionByte {
+        case Network.BTCmainnet.pubkeyHash, Network.BTCmainnet.scriptHash:
+            network = .BTCmainnet
+        case Network.BTCtestnet.pubkeyHash, Network.BTCtestnet.scriptHash:
+            network = .BTCtestnet
+        default:
+            throw AddressError.invalidVersionByte
+        }
+        
+        switch networkVersionByte {
+        case Network.BTCmainnet.pubkeyHash, Network.BTCtestnet.pubkeyHash:
+            hashType = .pubkeyHash
+        case Network.BTCmainnet.scriptHash, Network.BTCtestnet.scriptHash:
+            hashType = .scriptHash
+        default:
+            throw AddressError.invalidVersionByte
+        }
+        self.data = pubkeyHash.dropFirst()
+        
+        guard data.count == 20 else {
+            throw AddressError.invalid
+        }
+        
     }
 }

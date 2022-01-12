@@ -173,23 +173,17 @@ extension Data {
     }
     
     func to<T>(_ type: T.Type) -> T {
-        if type == VarInt.self {
-            return to(type)
-        } else if type == String.self {
-            return to(type)
-        } else {
-            var data = Data(count: MemoryLayout<T>.size)
-            // Doing this for aligning memory layout
-            _ = data.withUnsafeMutableBytes { self.copyBytes(to: $0) }
-            return data.withUnsafeBytes { $0.load(as: T.self) }
-        }
+        var data = Data(count: MemoryLayout<T>.size)
+        // Doing this for aligning memory layout
+        _ = data.withUnsafeMutableBytes { self.copyBytes(to: $0) }
+        return data.withUnsafeBytes { $0.load(as: T.self) }
     }
     
-    private func to(_ type: String.Type) -> String {
+    func to(_ type: String.Type) -> String {
         return String(bytes: self, encoding: .default)!.replacingOccurrences(of: "\0", with: "")
     }
     
-    private func to(_ type: VarInt.Type) -> VarInt {
+    func to(_ type: VarInt.Type) -> VarInt {
         let value: UInt64
         let length = self[0..<1].to(UInt8.self)
         switch length {

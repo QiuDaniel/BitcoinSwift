@@ -30,7 +30,7 @@ class ScriptMachineTests: XCTestCase {
 
         let privateKey = try! PrivateKey<Secp256k1>(wif: "92pMamV6jNyEq9pDpY4f6nBy9KpV2cfJT4L5zDUYiGqyQHJfF1K")
 
-        let fromPublicKey = privateKey!.toPublickKey()
+        let fromPublicKey = privateKey!.toPublicKey()
         let fromPubKeyHash = Crypto.hash160(fromPublicKey.data)
         
         let toPubkeyHash = Base58Check.decode(toAddress)!.dropFirst()

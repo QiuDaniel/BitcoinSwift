@@ -780,7 +780,7 @@ class OPCodeTests: XCTestCase {
 
         let privateKey = try! PrivateKey<Secp256k1>(wif: "92pMamV6jNyEq9pDpY4f6nBy9KpV2cfJT4L5zDUYiGqyQHJfF1K")
 
-        let fromPublicKey = privateKey!.toPublickKey()
+        let fromPublicKey = privateKey!.toPublicKey()
         
         let subScript = Script(hex: "76a9142a539adfd7aefcc02e0196b4ccf76aea88a1f47088ac")!
         let inputForSign = TransactionInput(prevTx: hash, prevIndex: index, scriptSig: subScript)
