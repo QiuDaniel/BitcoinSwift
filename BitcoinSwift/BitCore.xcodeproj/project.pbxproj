@@ -57,6 +57,11 @@
 		65A58C3D278E8D6600F73E40 /* VersionMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65A58C3C278E8D6600F73E40 /* VersionMessage.swift */; };
 		65A58C3F278EA0DB00F73E40 /* NetworkAddress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65A58C3E278EA0DB00F73E40 /* NetworkAddress.swift */; };
 		65A58C41278EAFF400F73E40 /* VersionMessageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65A58C40278EAFF400F73E40 /* VersionMessageTests.swift */; };
+		65A58C43278EBF8B00F73E40 /* VerAckMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65A58C42278EBF8B00F73E40 /* VerAckMessage.swift */; };
+		65A58C45278F0F3800F73E40 /* PingMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65A58C44278F0F3800F73E40 /* PingMessage.swift */; };
+		65A58C47278F107A00F73E40 /* PongMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65A58C46278F107A00F73E40 /* PongMessage.swift */; };
+		65A58C49278F10DE00F73E40 /* GetHeadersMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65A58C48278F10DE00F73E40 /* GetHeadersMessage.swift */; };
+		65A58C4B278F121600F73E40 /* GetHeadersMessageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65A58C4A278F121600F73E40 /* GetHeadersMessageTests.swift */; };
 		65DD5DC8277C5F31002C9CA0 /* PublicKey+Address.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65DD5DC7277C5F31002C9CA0 /* PublicKey+Address.swift */; };
 		65DD5DCA277C5FAE002C9CA0 /* PublicKeyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65DD5DC9277C5FAE002C9CA0 /* PublicKeyTests.swift */; };
 		65DD5DCD277C639A002C9CA0 /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65DD5DCC277C639A002C9CA0 /* Transaction.swift */; };
@@ -237,6 +242,11 @@
 		65A58C3C278E8D6600F73E40 /* VersionMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VersionMessage.swift; sourceTree = "<group>"; };
 		65A58C3E278EA0DB00F73E40 /* NetworkAddress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkAddress.swift; sourceTree = "<group>"; };
 		65A58C40278EAFF400F73E40 /* VersionMessageTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VersionMessageTests.swift; sourceTree = "<group>"; };
+		65A58C42278EBF8B00F73E40 /* VerAckMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerAckMessage.swift; sourceTree = "<group>"; };
+		65A58C44278F0F3800F73E40 /* PingMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PingMessage.swift; sourceTree = "<group>"; };
+		65A58C46278F107A00F73E40 /* PongMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PongMessage.swift; sourceTree = "<group>"; };
+		65A58C48278F10DE00F73E40 /* GetHeadersMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetHeadersMessage.swift; sourceTree = "<group>"; };
+		65A58C4A278F121600F73E40 /* GetHeadersMessageTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetHeadersMessageTests.swift; sourceTree = "<group>"; };
 		65DD5DC7277C5F31002C9CA0 /* PublicKey+Address.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PublicKey+Address.swift"; sourceTree = "<group>"; };
 		65DD5DC9277C5FAE002C9CA0 /* PublicKeyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicKeyTests.swift; sourceTree = "<group>"; };
 		65DD5DCC277C639A002C9CA0 /* Transaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transaction.swift; sourceTree = "<group>"; };
@@ -444,6 +454,7 @@
 				65A58C35278D67F900F73E40 /* ScriptMachineTests.swift */,
 				65A58C3A278DB5C100F73E40 /* NetworkEnvelopeTests.swift */,
 				65A58C40278EAFF400F73E40 /* VersionMessageTests.swift */,
+				65A58C4A278F121600F73E40 /* GetHeadersMessageTests.swift */,
 			);
 			path = BitCoreTests;
 			sourceTree = "<group>";
@@ -529,6 +540,10 @@
 				65A58C38278DAF9E00F73E40 /* NetworkEnvelope.swift */,
 				65A58C3C278E8D6600F73E40 /* VersionMessage.swift */,
 				65A58C3E278EA0DB00F73E40 /* NetworkAddress.swift */,
+				65A58C42278EBF8B00F73E40 /* VerAckMessage.swift */,
+				65A58C44278F0F3800F73E40 /* PingMessage.swift */,
+				65A58C46278F107A00F73E40 /* PongMessage.swift */,
+				65A58C48278F10DE00F73E40 /* GetHeadersMessage.swift */,
 			);
 			path = Message;
 			sourceTree = "<group>";
@@ -881,6 +896,7 @@
 				65DD5ED327854EA3002C9CA0 /* OP_CHECKMULTISIG.swift in Sources */,
 				65DD5ED027854E1C002C9CA0 /* OP_XOR.swift in Sources */,
 				65DD5DCF277C63A8002C9CA0 /* TransactionInput.swift in Sources */,
+				65A58C49278F10DE00F73E40 /* GetHeadersMessage.swift in Sources */,
 				65DD5E952785443D002C9CA0 /* OP_ABS.swift in Sources */,
 				65DD5F1B278575EC002C9CA0 /* OP_NUM2BIN.swift in Sources */,
 				65DD5ED727854EF9002C9CA0 /* OP_CHECKSIG.swift in Sources */,
@@ -935,6 +951,7 @@
 				65DD5F02278572B6002C9CA0 /* OP_INVALIDOPCODE.swift in Sources */,
 				65DD5F2827857A24002C9CA0 /* OP_2ROT.swift in Sources */,
 				657BD5392772FD1600B8E0D5 /* Status.swift in Sources */,
+				65A58C47278F107A00F73E40 /* PongMessage.swift in Sources */,
 				65DD5DD1277C63DD002C9CA0 /* TransactionOutput.swift in Sources */,
 				65DD5F502785A3DB002C9CA0 /* OPCode+Static.swift in Sources */,
 				65DD5EB727854B2E002C9CA0 /* OP_NUMEQUALVERIFY.swift in Sources */,
@@ -951,6 +968,7 @@
 				65DD5E9D278547D8002C9CA0 /* OP_DIV.swift in Sources */,
 				65DD5F3427857B3A002C9CA0 /* OP_FROMALTSTACK.swift in Sources */,
 				657BD5732779AF4000B8E0D5 /* PrivateKey.swift in Sources */,
+				65A58C43278EBF8B00F73E40 /* VerAckMessage.swift in Sources */,
 				65DD5DCD277C639A002C9CA0 /* Transaction.swift in Sources */,
 				65DD5E9727854469002C9CA0 /* OP_ADD.swift in Sources */,
 				65DD5ECC27854DDC002C9CA0 /* OP_RESERVED1.swift in Sources */,
@@ -1010,6 +1028,7 @@
 				65DD5EA1278548E6002C9CA0 /* OP_GREATERTHANOREQUAL.swift in Sources */,
 				65DD5DC8277C5F31002C9CA0 /* PublicKey+Address.swift in Sources */,
 				65DD5ECE27854E00002C9CA0 /* OP_RESERVED2.swift in Sources */,
+				65A58C45278F0F3800F73E40 /* PingMessage.swift in Sources */,
 				65DD5E9B2785478B002C9CA0 /* OP_BOOLOR.swift in Sources */,
 				65DD5EBF27854C24002C9CA0 /* OP_WITHIN.swift in Sources */,
 				657BD54B27741DAD00B8E0D5 /* RIPEMD160.swift in Sources */,
@@ -1035,6 +1054,7 @@
 				65DD5E852783FC3A002C9CA0 /* BlockTests.swift in Sources */,
 				65077253274F7E23006500C1 /* BitCoreTests.swift in Sources */,
 				65A58C30278C0CDE00F73E40 /* TransactionTests.swift in Sources */,
+				65A58C4B278F121600F73E40 /* GetHeadersMessageTests.swift in Sources */,
 				65A58C3B278DB5C100F73E40 /* NetworkEnvelopeTests.swift in Sources */,
 				657BD5462773238700B8E0D5 /* Base58Tests.swift in Sources */,
 				65DD5E78277DAB1B002C9CA0 /* MerkleTreeTests.swift in Sources */,
