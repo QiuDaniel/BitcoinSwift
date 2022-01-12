@@ -159,24 +159,31 @@ extension Int64: BinaryConvertible {}
 
 extension Data {
     
-    func to<T>(_ type: T.Type) -> T {
-        if type == VarInt.self {
-            return to(type)
-        } else if type == String.self {
-            return to(type)
-        } else {
-            var data = Data(count: MemoryLayout<T>.size)
-            // Doing this for aligning memory layout
-            _ = data.withUnsafeMutableBytes { self.copyBytes(to: $0) }
-            return data.withUnsafeBytes { $0.load(as: T.self) }
+    // https://stackoverflow.com/questions/60857760/warning-initialization-of-unsafebufferpointert-results-in-a-dangling-buffer
+    init<T>(value: T) {
+        self = withUnsafePointer(to: value) { (ptr: UnsafePointer<T>) -> Data in
+            return Data(buffer: UnsafeBufferPointer(start: ptr, count: 1))
+        }
+    }
+
+    mutating func append<T>(value: T) {
+        withUnsafePointer(to: value) { (ptr: UnsafePointer<T>) in
+            append(UnsafeBufferPointer(start: ptr, count: 1))
         }
     }
     
-    private func to(_ type: String.Type) -> String {
+    func to<T>(_ type: T.Type) -> T {
+        var data = Data(count: MemoryLayout<T>.size)
+        // Doing this for aligning memory layout
+        _ = data.withUnsafeMutableBytes { self.copyBytes(to: $0) }
+        return data.withUnsafeBytes { $0.load(as: T.self) }
+    }
+    
+    func to(_ type: String.Type) -> String {
         return String(bytes: self, encoding: .default)!.replacingOccurrences(of: "\0", with: "")
     }
     
-    private func to(_ type: VarInt.Type) -> VarInt {
+    func to(_ type: VarInt.Type) -> VarInt {
         let value: UInt64
         let length = self[0..<1].to(UInt8.self)
         switch length {

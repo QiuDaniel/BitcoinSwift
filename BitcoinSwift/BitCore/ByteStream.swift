@@ -7,7 +7,7 @@
 
 import Foundation
 
-final class ByteStream {
+public final class ByteStream {
     let data: Data
     private var offset = 0
     

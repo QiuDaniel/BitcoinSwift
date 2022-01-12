@@ -18,6 +18,20 @@ public struct Point<CurveType: EllipticCurve>: EllipticCurvePoint {
         self.y = y
     }
     
+    public init(data: Data) throws {
+        if data.count == 33 {
+            self = try Self.parseFromCompressedPublicKey(bytes: data)
+        } else if data.count == 65 {
+            self = try Self.parseFromUncompressedPublicKey(bytes: data)
+        } else {
+            throw PointError.failedToSerializeBytes
+        }
+    }
+    
+    public init(hex: String) throws {
+        try self.init(data: Data(hex: hex))
+    }
+    
     func verify(_ message: Message, signature: Signature<Curve>) -> Bool {
         guard self.isOnCurve else {
             return false

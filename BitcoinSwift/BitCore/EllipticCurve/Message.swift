@@ -13,11 +13,11 @@ public struct Message: CustomStringConvertible {
     private let raw: Data
     
     ///  The data ought to be hashed before signed.
-    init(raw: Data) {
+    public init(raw: Data) {
         self.raw = raw
     }
     
-    init(hashedHex: String) {
+    public init(hashedHex: String) {
         let data = Data(hex: hashedHex)
         self.init(raw: data)
     }

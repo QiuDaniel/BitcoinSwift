@@ -79,6 +79,12 @@ public extension BigNumber {
         return Int(floor(Double(bitCount + 7)) / Double(8))
     }
     
+    func negated() -> Self {
+        var copy = self
+        copy.negate()
+        return copy
+    }
+    
 }
 
 extension Data {
