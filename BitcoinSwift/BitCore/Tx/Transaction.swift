@@ -18,6 +18,10 @@ public struct Transaction {
         return Data(hash256.reversed())
     }
     
+    public var isCoinbase: Bool {
+        return inputs.count == 1 && inputs[0].prevTx == Data(repeating: 0, count: 32) && inputs[0].prevIndex == 0xFFFF_FFFF
+    }
+    
     public let version: UInt32
     public let inputs: [TransactionInput]
     public let outputs: [TransactionOutput]
