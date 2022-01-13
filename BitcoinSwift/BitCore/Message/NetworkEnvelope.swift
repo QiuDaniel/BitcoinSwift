@@ -67,3 +67,7 @@ extension NetworkEnvelope: CustomStringConvertible {
         return "\(self.command): \(self.payload.hex)"
     }
 }
+
+enum MessageError: Error {
+    case error(String)
+}

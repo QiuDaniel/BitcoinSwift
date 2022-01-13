@@ -62,6 +62,8 @@
 		65A58C47278F107A00F73E40 /* PongMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65A58C46278F107A00F73E40 /* PongMessage.swift */; };
 		65A58C49278F10DE00F73E40 /* GetHeadersMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65A58C48278F10DE00F73E40 /* GetHeadersMessage.swift */; };
 		65A58C4B278F121600F73E40 /* GetHeadersMessageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65A58C4A278F121600F73E40 /* GetHeadersMessageTests.swift */; };
+		65A58C4D278FE5C400F73E40 /* HeadersMessge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65A58C4C278FE5C400F73E40 /* HeadersMessge.swift */; };
+		65A58C4F278FEAE300F73E40 /* HeadersMessageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65A58C4E278FEAE300F73E40 /* HeadersMessageTests.swift */; };
 		65DD5DC8277C5F31002C9CA0 /* PublicKey+Address.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65DD5DC7277C5F31002C9CA0 /* PublicKey+Address.swift */; };
 		65DD5DCA277C5FAE002C9CA0 /* PublicKeyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65DD5DC9277C5FAE002C9CA0 /* PublicKeyTests.swift */; };
 		65DD5DCD277C639A002C9CA0 /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65DD5DCC277C639A002C9CA0 /* Transaction.swift */; };
@@ -247,6 +249,8 @@
 		65A58C46278F107A00F73E40 /* PongMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PongMessage.swift; sourceTree = "<group>"; };
 		65A58C48278F10DE00F73E40 /* GetHeadersMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetHeadersMessage.swift; sourceTree = "<group>"; };
 		65A58C4A278F121600F73E40 /* GetHeadersMessageTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetHeadersMessageTests.swift; sourceTree = "<group>"; };
+		65A58C4C278FE5C400F73E40 /* HeadersMessge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeadersMessge.swift; sourceTree = "<group>"; };
+		65A58C4E278FEAE300F73E40 /* HeadersMessageTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeadersMessageTests.swift; sourceTree = "<group>"; };
 		65DD5DC7277C5F31002C9CA0 /* PublicKey+Address.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PublicKey+Address.swift"; sourceTree = "<group>"; };
 		65DD5DC9277C5FAE002C9CA0 /* PublicKeyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicKeyTests.swift; sourceTree = "<group>"; };
 		65DD5DCC277C639A002C9CA0 /* Transaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transaction.swift; sourceTree = "<group>"; };
@@ -455,6 +459,7 @@
 				65A58C3A278DB5C100F73E40 /* NetworkEnvelopeTests.swift */,
 				65A58C40278EAFF400F73E40 /* VersionMessageTests.swift */,
 				65A58C4A278F121600F73E40 /* GetHeadersMessageTests.swift */,
+				65A58C4E278FEAE300F73E40 /* HeadersMessageTests.swift */,
 			);
 			path = BitCoreTests;
 			sourceTree = "<group>";
@@ -544,6 +549,7 @@
 				65A58C44278F0F3800F73E40 /* PingMessage.swift */,
 				65A58C46278F107A00F73E40 /* PongMessage.swift */,
 				65A58C48278F10DE00F73E40 /* GetHeadersMessage.swift */,
+				65A58C4C278FE5C400F73E40 /* HeadersMessge.swift */,
 			);
 			path = Message;
 			sourceTree = "<group>";
@@ -1041,6 +1047,7 @@
 				65DD5EAB27854A1A002C9CA0 /* OP_MIN.swift in Sources */,
 				65DD5E9F278548A9002C9CA0 /* OP_GREATERTHAN.swift in Sources */,
 				657BD5682775D30000B8E0D5 /* EllipticCurvePoint.swift in Sources */,
+				65A58C4D278FE5C400F73E40 /* HeadersMessge.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1056,6 +1063,7 @@
 				65A58C30278C0CDE00F73E40 /* TransactionTests.swift in Sources */,
 				65A58C4B278F121600F73E40 /* GetHeadersMessageTests.swift in Sources */,
 				65A58C3B278DB5C100F73E40 /* NetworkEnvelopeTests.swift in Sources */,
+				65A58C4F278FEAE300F73E40 /* HeadersMessageTests.swift in Sources */,
 				657BD5462773238700B8E0D5 /* Base58Tests.swift in Sources */,
 				65DD5E78277DAB1B002C9CA0 /* MerkleTreeTests.swift in Sources */,
 				657BD5562775658F00B8E0D5 /* RIPEMD160Tests.swift in Sources */,

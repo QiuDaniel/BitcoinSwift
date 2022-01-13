@@ -50,8 +50,7 @@ public struct Block {
         return lowest / self.target
     }
     
-    static func parse(_ data: Data) -> Block {
-        let stream = ByteStream(data)
+    static func parse(_ stream: ByteStream) -> Block {
         let version = stream.read(Int32.self).littleEndian
         let prevBlock = Data(stream.read(Data.self, count: 32).reversed())
         let merkleRoot = Data(stream.read(Data.self, count: 32).reversed())
