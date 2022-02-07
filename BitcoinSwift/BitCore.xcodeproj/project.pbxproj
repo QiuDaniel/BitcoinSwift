@@ -66,6 +66,9 @@
 		65A58C4F278FEAE300F73E40 /* HeadersMessageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65A58C4E278FEAE300F73E40 /* HeadersMessageTests.swift */; };
 		65A58C51278FF1C700F73E40 /* GetDataMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65A58C50278FF1C700F73E40 /* GetDataMessage.swift */; };
 		65BD0BBA27B0C2EA00A063F5 /* GetDataMessageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65BD0BB927B0C2EA00A063F5 /* GetDataMessageTests.swift */; };
+		65BD0BBC27B0CF5000A063F5 /* BloomFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65BD0BBB27B0CF5000A063F5 /* BloomFilter.swift */; };
+		65BD0BBE27B0F54C00A063F5 /* Murmur3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65BD0BBD27B0F54C00A063F5 /* Murmur3.swift */; };
+		65BD0BC027B1025600A063F5 /* Murmur3Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65BD0BBF27B1025600A063F5 /* Murmur3Tests.swift */; };
 		65DD5DC8277C5F31002C9CA0 /* PublicKey+Address.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65DD5DC7277C5F31002C9CA0 /* PublicKey+Address.swift */; };
 		65DD5DCA277C5FAE002C9CA0 /* PublicKeyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65DD5DC9277C5FAE002C9CA0 /* PublicKeyTests.swift */; };
 		65DD5DCD277C639A002C9CA0 /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65DD5DCC277C639A002C9CA0 /* Transaction.swift */; };
@@ -255,6 +258,9 @@
 		65A58C4E278FEAE300F73E40 /* HeadersMessageTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeadersMessageTests.swift; sourceTree = "<group>"; };
 		65A58C50278FF1C700F73E40 /* GetDataMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetDataMessage.swift; sourceTree = "<group>"; };
 		65BD0BB927B0C2EA00A063F5 /* GetDataMessageTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetDataMessageTests.swift; sourceTree = "<group>"; };
+		65BD0BBB27B0CF5000A063F5 /* BloomFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BloomFilter.swift; sourceTree = "<group>"; };
+		65BD0BBD27B0F54C00A063F5 /* Murmur3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Murmur3.swift; sourceTree = "<group>"; };
+		65BD0BBF27B1025600A063F5 /* Murmur3Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Murmur3Tests.swift; sourceTree = "<group>"; };
 		65DD5DC7277C5F31002C9CA0 /* PublicKey+Address.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PublicKey+Address.swift"; sourceTree = "<group>"; };
 		65DD5DC9277C5FAE002C9CA0 /* PublicKeyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicKeyTests.swift; sourceTree = "<group>"; };
 		65DD5DCC277C639A002C9CA0 /* Transaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transaction.swift; sourceTree = "<group>"; };
@@ -436,6 +442,7 @@
 				65DD5E7E277E0881002C9CA0 /* ByteStream.swift */,
 				65DD5F5327873693002C9CA0 /* SigHashType.swift */,
 				65DD5F5527873813002C9CA0 /* SignatureHash.swift */,
+				65BD0BBB27B0CF5000A063F5 /* BloomFilter.swift */,
 			);
 			path = BitCore;
 			sourceTree = "<group>";
@@ -465,6 +472,7 @@
 				65A58C4A278F121600F73E40 /* GetHeadersMessageTests.swift */,
 				65A58C4E278FEAE300F73E40 /* HeadersMessageTests.swift */,
 				65BD0BB927B0C2EA00A063F5 /* GetDataMessageTests.swift */,
+				65BD0BBF27B1025600A063F5 /* Murmur3Tests.swift */,
 			);
 			path = BitCoreTests;
 			sourceTree = "<group>";
@@ -507,6 +515,7 @@
 				657BD54A27741DAD00B8E0D5 /* RIPEMD160.swift */,
 				657BD54F27742D8700B8E0D5 /* Crypto.swift */,
 				657BD5512774502E00B8E0D5 /* Serialization.swift */,
+				65BD0BBD27B0F54C00A063F5 /* Murmur3.swift */,
 			);
 			path = Crypto;
 			sourceTree = "<group>";
@@ -972,6 +981,7 @@
 				65DD5EA727854991002C9CA0 /* OP_LSHIFT.swift in Sources */,
 				657BD5372772FC4F00B8E0D5 /* SecureRandom.swift in Sources */,
 				65DD5F3227857B19002C9CA0 /* OP_DUP.swift in Sources */,
+				65BD0BBE27B0F54C00A063F5 /* Murmur3.swift in Sources */,
 				65DD5F1D2785760E002C9CA0 /* OP_SIZE.swift in Sources */,
 				65DD5F5227872875002C9CA0 /* Point+Static.swift in Sources */,
 				65DD5ED527854EC6002C9CA0 /* OP_CHECKMULTISIGVERIFY.swift in Sources */,
@@ -999,6 +1009,7 @@
 				65DD5E7A277DC909002C9CA0 /* Helper.swift in Sources */,
 				657BD55F2775B12400B8E0D5 /* EllipticCurve.swift in Sources */,
 				65A58C2A2787F1E400F73E40 /* ECDSA.swift in Sources */,
+				65BD0BBC27B0CF5000A063F5 /* BloomFilter.swift in Sources */,
 				65DD5EB527854AF8002C9CA0 /* OP_NUMEQUAL.swift in Sources */,
 				65DD5F142785751F002C9CA0 /* OP_NOPN.swift in Sources */,
 				65DD5F4A27858CFD002C9CA0 /* ScriptChunk.swift in Sources */,
@@ -1073,6 +1084,7 @@
 				65A58C4F278FEAE300F73E40 /* HeadersMessageTests.swift in Sources */,
 				657BD5462773238700B8E0D5 /* Base58Tests.swift in Sources */,
 				65DD5E78277DAB1B002C9CA0 /* MerkleTreeTests.swift in Sources */,
+				65BD0BC027B1025600A063F5 /* Murmur3Tests.swift in Sources */,
 				657BD5562775658F00B8E0D5 /* RIPEMD160Tests.swift in Sources */,
 				65BD0BBA27B0C2EA00A063F5 /* GetDataMessageTests.swift in Sources */,
 				65A58C41278EAFF400F73E40 /* VersionMessageTests.swift in Sources */,
