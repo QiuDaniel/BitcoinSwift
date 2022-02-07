@@ -64,6 +64,8 @@
 		65A58C4B278F121600F73E40 /* GetHeadersMessageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65A58C4A278F121600F73E40 /* GetHeadersMessageTests.swift */; };
 		65A58C4D278FE5C400F73E40 /* HeadersMessge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65A58C4C278FE5C400F73E40 /* HeadersMessge.swift */; };
 		65A58C4F278FEAE300F73E40 /* HeadersMessageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65A58C4E278FEAE300F73E40 /* HeadersMessageTests.swift */; };
+		65A58C51278FF1C700F73E40 /* GetDataMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65A58C50278FF1C700F73E40 /* GetDataMessage.swift */; };
+		65BD0BBA27B0C2EA00A063F5 /* GetDataMessageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65BD0BB927B0C2EA00A063F5 /* GetDataMessageTests.swift */; };
 		65DD5DC8277C5F31002C9CA0 /* PublicKey+Address.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65DD5DC7277C5F31002C9CA0 /* PublicKey+Address.swift */; };
 		65DD5DCA277C5FAE002C9CA0 /* PublicKeyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65DD5DC9277C5FAE002C9CA0 /* PublicKeyTests.swift */; };
 		65DD5DCD277C639A002C9CA0 /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65DD5DCC277C639A002C9CA0 /* Transaction.swift */; };
@@ -251,6 +253,8 @@
 		65A58C4A278F121600F73E40 /* GetHeadersMessageTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetHeadersMessageTests.swift; sourceTree = "<group>"; };
 		65A58C4C278FE5C400F73E40 /* HeadersMessge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeadersMessge.swift; sourceTree = "<group>"; };
 		65A58C4E278FEAE300F73E40 /* HeadersMessageTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeadersMessageTests.swift; sourceTree = "<group>"; };
+		65A58C50278FF1C700F73E40 /* GetDataMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetDataMessage.swift; sourceTree = "<group>"; };
+		65BD0BB927B0C2EA00A063F5 /* GetDataMessageTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetDataMessageTests.swift; sourceTree = "<group>"; };
 		65DD5DC7277C5F31002C9CA0 /* PublicKey+Address.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PublicKey+Address.swift"; sourceTree = "<group>"; };
 		65DD5DC9277C5FAE002C9CA0 /* PublicKeyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicKeyTests.swift; sourceTree = "<group>"; };
 		65DD5DCC277C639A002C9CA0 /* Transaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transaction.swift; sourceTree = "<group>"; };
@@ -460,6 +464,7 @@
 				65A58C40278EAFF400F73E40 /* VersionMessageTests.swift */,
 				65A58C4A278F121600F73E40 /* GetHeadersMessageTests.swift */,
 				65A58C4E278FEAE300F73E40 /* HeadersMessageTests.swift */,
+				65BD0BB927B0C2EA00A063F5 /* GetDataMessageTests.swift */,
 			);
 			path = BitCoreTests;
 			sourceTree = "<group>";
@@ -550,6 +555,7 @@
 				65A58C46278F107A00F73E40 /* PongMessage.swift */,
 				65A58C48278F10DE00F73E40 /* GetHeadersMessage.swift */,
 				65A58C4C278FE5C400F73E40 /* HeadersMessge.swift */,
+				65A58C50278FF1C700F73E40 /* GetDataMessage.swift */,
 			);
 			path = Message;
 			sourceTree = "<group>";
@@ -979,6 +985,7 @@
 				65DD5E9727854469002C9CA0 /* OP_ADD.swift in Sources */,
 				65DD5ECC27854DDC002C9CA0 /* OP_RESERVED1.swift in Sources */,
 				657BD56C2779911300B8E0D5 /* Signature.swift in Sources */,
+				65A58C51278FF1C700F73E40 /* GetDataMessage.swift in Sources */,
 				65DD5E8B27845CC9002C9CA0 /* OP_0NOTEQUAL.swift in Sources */,
 				65DD5EE527856BBB002C9CA0 /* OP_SHA256.swift in Sources */,
 				65DD5F2E27857AA1002C9CA0 /* OP_DEPTH.swift in Sources */,
@@ -1067,6 +1074,7 @@
 				657BD5462773238700B8E0D5 /* Base58Tests.swift in Sources */,
 				65DD5E78277DAB1B002C9CA0 /* MerkleTreeTests.swift in Sources */,
 				657BD5562775658F00B8E0D5 /* RIPEMD160Tests.swift in Sources */,
+				65BD0BBA27B0C2EA00A063F5 /* GetDataMessageTests.swift in Sources */,
 				65A58C41278EAFF400F73E40 /* VersionMessageTests.swift in Sources */,
 				65A58C2C278967DD00F73E40 /* OPCodeTests.swift in Sources */,
 				657BD5642775C04900B8E0D5 /* MathTests.swift in Sources */,
