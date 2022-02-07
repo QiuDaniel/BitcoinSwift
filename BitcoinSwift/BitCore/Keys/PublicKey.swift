@@ -19,7 +19,7 @@ public struct PublicKey<Curve: EllipticCurve> {
         return Crypto.hash160(data)
     }
     
-    init(point: ECCPoint, isCompressed: Bool = true, network: Network = .BTCmainnet) {
+    public init(point: ECCPoint, isCompressed: Bool = true, network: Network = .BTCmainnet) {
         self.point = point
         self.isCompressed = isCompressed
         self.network = network
@@ -38,12 +38,12 @@ public struct PublicKey<Curve: EllipticCurve> {
         }
     }
     
-    init(privateKey: PrivateKey<Curve>, isCompressed: Bool = true) {
+    public init(privateKey: PrivateKey<Curve>, isCompressed: Bool = true) {
         let point = Curve.G * privateKey.secret
         self.init(point: point, isCompressed: isCompressed, network: privateKey.network)
     }
     
-    init(bytes data: Data, network: Network = .BTCmainnet) throws {
+    public init(bytes data: Data, network: Network = .BTCmainnet) throws {
         self.data = data
         self.network = network
         let header = data[0]

@@ -69,6 +69,8 @@
 		65BD0BBC27B0CF5000A063F5 /* BloomFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65BD0BBB27B0CF5000A063F5 /* BloomFilter.swift */; };
 		65BD0BBE27B0F54C00A063F5 /* Murmur3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65BD0BBD27B0F54C00A063F5 /* Murmur3.swift */; };
 		65BD0BC027B1025600A063F5 /* Murmur3Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65BD0BBF27B1025600A063F5 /* Murmur3Tests.swift */; };
+		65BD0BC227B115DA00A063F5 /* BloomFilterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65BD0BC127B115DA00A063F5 /* BloomFilterTests.swift */; };
+		65BD0BC427B11D0500A063F5 /* GenericMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65BD0BC327B11D0500A063F5 /* GenericMessage.swift */; };
 		65DD5DC8277C5F31002C9CA0 /* PublicKey+Address.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65DD5DC7277C5F31002C9CA0 /* PublicKey+Address.swift */; };
 		65DD5DCA277C5FAE002C9CA0 /* PublicKeyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65DD5DC9277C5FAE002C9CA0 /* PublicKeyTests.swift */; };
 		65DD5DCD277C639A002C9CA0 /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65DD5DCC277C639A002C9CA0 /* Transaction.swift */; };
@@ -261,6 +263,8 @@
 		65BD0BBB27B0CF5000A063F5 /* BloomFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BloomFilter.swift; sourceTree = "<group>"; };
 		65BD0BBD27B0F54C00A063F5 /* Murmur3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Murmur3.swift; sourceTree = "<group>"; };
 		65BD0BBF27B1025600A063F5 /* Murmur3Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Murmur3Tests.swift; sourceTree = "<group>"; };
+		65BD0BC127B115DA00A063F5 /* BloomFilterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BloomFilterTests.swift; sourceTree = "<group>"; };
+		65BD0BC327B11D0500A063F5 /* GenericMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericMessage.swift; sourceTree = "<group>"; };
 		65DD5DC7277C5F31002C9CA0 /* PublicKey+Address.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PublicKey+Address.swift"; sourceTree = "<group>"; };
 		65DD5DC9277C5FAE002C9CA0 /* PublicKeyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicKeyTests.swift; sourceTree = "<group>"; };
 		65DD5DCC277C639A002C9CA0 /* Transaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transaction.swift; sourceTree = "<group>"; };
@@ -473,6 +477,7 @@
 				65A58C4E278FEAE300F73E40 /* HeadersMessageTests.swift */,
 				65BD0BB927B0C2EA00A063F5 /* GetDataMessageTests.swift */,
 				65BD0BBF27B1025600A063F5 /* Murmur3Tests.swift */,
+				65BD0BC127B115DA00A063F5 /* BloomFilterTests.swift */,
 			);
 			path = BitCoreTests;
 			sourceTree = "<group>";
@@ -565,6 +570,7 @@
 				65A58C48278F10DE00F73E40 /* GetHeadersMessage.swift */,
 				65A58C4C278FE5C400F73E40 /* HeadersMessge.swift */,
 				65A58C50278FF1C700F73E40 /* GetDataMessage.swift */,
+				65BD0BC327B11D0500A063F5 /* GenericMessage.swift */,
 			);
 			path = Message;
 			sourceTree = "<group>";
@@ -1053,6 +1059,7 @@
 				65DD5DC8277C5F31002C9CA0 /* PublicKey+Address.swift in Sources */,
 				65DD5ECE27854E00002C9CA0 /* OP_RESERVED2.swift in Sources */,
 				65A58C45278F0F3800F73E40 /* PingMessage.swift in Sources */,
+				65BD0BC427B11D0500A063F5 /* GenericMessage.swift in Sources */,
 				65DD5E9B2785478B002C9CA0 /* OP_BOOLOR.swift in Sources */,
 				65DD5EBF27854C24002C9CA0 /* OP_WITHIN.swift in Sources */,
 				657BD54B27741DAD00B8E0D5 /* RIPEMD160.swift in Sources */,
@@ -1093,6 +1100,7 @@
 				657BD57027799EE600B8E0D5 /* DERTests.swift in Sources */,
 				657BD558277566FB00B8E0D5 /* SHA2Tests.swift in Sources */,
 				65DD5E81277EA86D002C9CA0 /* MerkleBlockTests.swift in Sources */,
+				65BD0BC227B115DA00A063F5 /* BloomFilterTests.swift in Sources */,
 				657BD55A27759D1300B8E0D5 /* Base58CheckTests.swift in Sources */,
 				657BD5792779D2DD00B8E0D5 /* PrivateKeyTests.swift in Sources */,
 			);
