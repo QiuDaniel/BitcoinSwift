@@ -9,6 +9,8 @@ import Foundation
 
 public struct VerAckMessage {
     
+    public static let command = "verack"
+    
     func serialize() -> Data {
         return .empty
     }

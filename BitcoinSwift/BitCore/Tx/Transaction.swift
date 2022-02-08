@@ -74,8 +74,7 @@ public struct Transaction {
 
 public extension Transaction {
     //FIXME: - segwit
-    static func parse(_ data: Data) -> Self {
-        let stream = ByteStream(data)
+    static func parse(_ stream: ByteStream) -> Self {
         let version = stream.read(UInt32.self).littleEndian
         let txInCount = stream.read(VarInt.self)
         var inputs = [TransactionInput]()

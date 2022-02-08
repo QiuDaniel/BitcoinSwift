@@ -71,6 +71,12 @@
 		65BD0BC027B1025600A063F5 /* Murmur3Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65BD0BBF27B1025600A063F5 /* Murmur3Tests.swift */; };
 		65BD0BC227B115DA00A063F5 /* BloomFilterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65BD0BC127B115DA00A063F5 /* BloomFilterTests.swift */; };
 		65BD0BC427B11D0500A063F5 /* GenericMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65BD0BC327B11D0500A063F5 /* GenericMessage.swift */; };
+		65BD0BC727B12AD700A063F5 /* PeerGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65BD0BC627B12AD700A063F5 /* PeerGroup.swift */; };
+		65BD0BC927B12C3800A063F5 /* Peer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65BD0BC827B12C3800A063F5 /* Peer.swift */; };
+		65BD0C6327B24A5E00A063F5 /* GetBlocksMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65BD0C6227B24A5E00A063F5 /* GetBlocksMessage.swift */; };
+		65BD0C6527B258EE00A063F5 /* Inventory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65BD0C6427B258EE00A063F5 /* Inventory.swift */; };
+		65BD0C6727B25B1800A063F5 /* InventoryMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65BD0C6627B25B1800A063F5 /* InventoryMessage.swift */; };
+		65BD0C6927B2767000A063F5 /* BlockMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65BD0C6827B2767000A063F5 /* BlockMessage.swift */; };
 		65DD5DC8277C5F31002C9CA0 /* PublicKey+Address.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65DD5DC7277C5F31002C9CA0 /* PublicKey+Address.swift */; };
 		65DD5DCA277C5FAE002C9CA0 /* PublicKeyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65DD5DC9277C5FAE002C9CA0 /* PublicKeyTests.swift */; };
 		65DD5DCD277C639A002C9CA0 /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65DD5DCC277C639A002C9CA0 /* Transaction.swift */; };
@@ -265,6 +271,12 @@
 		65BD0BBF27B1025600A063F5 /* Murmur3Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Murmur3Tests.swift; sourceTree = "<group>"; };
 		65BD0BC127B115DA00A063F5 /* BloomFilterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BloomFilterTests.swift; sourceTree = "<group>"; };
 		65BD0BC327B11D0500A063F5 /* GenericMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericMessage.swift; sourceTree = "<group>"; };
+		65BD0BC627B12AD700A063F5 /* PeerGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeerGroup.swift; sourceTree = "<group>"; };
+		65BD0BC827B12C3800A063F5 /* Peer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Peer.swift; sourceTree = "<group>"; };
+		65BD0C6227B24A5E00A063F5 /* GetBlocksMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetBlocksMessage.swift; sourceTree = "<group>"; };
+		65BD0C6427B258EE00A063F5 /* Inventory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Inventory.swift; sourceTree = "<group>"; };
+		65BD0C6627B25B1800A063F5 /* InventoryMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventoryMessage.swift; sourceTree = "<group>"; };
+		65BD0C6827B2767000A063F5 /* BlockMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockMessage.swift; sourceTree = "<group>"; };
 		65DD5DC7277C5F31002C9CA0 /* PublicKey+Address.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PublicKey+Address.swift"; sourceTree = "<group>"; };
 		65DD5DC9277C5FAE002C9CA0 /* PublicKeyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicKeyTests.swift; sourceTree = "<group>"; };
 		65DD5DCC277C639A002C9CA0 /* Transaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transaction.swift; sourceTree = "<group>"; };
@@ -423,6 +435,7 @@
 		65077246274F7E23006500C1 /* BitCore */ = {
 			isa = PBXGroup;
 			children = (
+				65BD0BC527B12ABD00A063F5 /* Networking */,
 				65A58C37278DAF8900F73E40 /* Message */,
 				65A58C282787F1D600F73E40 /* Signing */,
 				65DD5E7B277E0602002C9CA0 /* Block */,
@@ -571,8 +584,21 @@
 				65A58C4C278FE5C400F73E40 /* HeadersMessge.swift */,
 				65A58C50278FF1C700F73E40 /* GetDataMessage.swift */,
 				65BD0BC327B11D0500A063F5 /* GenericMessage.swift */,
+				65BD0C6227B24A5E00A063F5 /* GetBlocksMessage.swift */,
+				65BD0C6427B258EE00A063F5 /* Inventory.swift */,
+				65BD0C6627B25B1800A063F5 /* InventoryMessage.swift */,
+				65BD0C6827B2767000A063F5 /* BlockMessage.swift */,
 			);
 			path = Message;
+			sourceTree = "<group>";
+		};
+		65BD0BC527B12ABD00A063F5 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				65BD0BC627B12AD700A063F5 /* PeerGroup.swift */,
+				65BD0BC827B12C3800A063F5 /* Peer.swift */,
+			);
+			path = Networking;
 			sourceTree = "<group>";
 		};
 		65DD5DCB277C6373002C9CA0 /* Tx */ = {
@@ -921,10 +947,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				65DD5ED327854EA3002C9CA0 /* OP_CHECKMULTISIG.swift in Sources */,
+				65BD0BC727B12AD700A063F5 /* PeerGroup.swift in Sources */,
 				65DD5ED027854E1C002C9CA0 /* OP_XOR.swift in Sources */,
 				65DD5DCF277C63A8002C9CA0 /* TransactionInput.swift in Sources */,
 				65A58C49278F10DE00F73E40 /* GetHeadersMessage.swift in Sources */,
 				65DD5E952785443D002C9CA0 /* OP_ABS.swift in Sources */,
+				65BD0C6927B2767000A063F5 /* BlockMessage.swift in Sources */,
 				65DD5F1B278575EC002C9CA0 /* OP_NUM2BIN.swift in Sources */,
 				65DD5ED727854EF9002C9CA0 /* OP_CHECKSIG.swift in Sources */,
 				657BD54D27741F7200B8E0D5 /* Macros.swift in Sources */,
@@ -943,6 +971,7 @@
 				65DD5E9327853F31002C9CA0 /* OP_2MUL.swift in Sources */,
 				65DD5E76277DA108002C9CA0 /* MerkleTree+Operation.swift in Sources */,
 				65DD5F2C27857A8B002C9CA0 /* OP_3DUP.swift in Sources */,
+				65BD0C6327B24A5E00A063F5 /* GetBlocksMessage.swift in Sources */,
 				65DD5DD4277C68A9002C9CA0 /* Script.swift in Sources */,
 				657BD53B2772FE2000B8E0D5 /* BigNumber.swift in Sources */,
 				65DD5EAD27854A37002C9CA0 /* OP_MOD.swift in Sources */,
@@ -978,6 +1007,7 @@
 				65DD5F02278572B6002C9CA0 /* OP_INVALIDOPCODE.swift in Sources */,
 				65DD5F2827857A24002C9CA0 /* OP_2ROT.swift in Sources */,
 				657BD5392772FD1600B8E0D5 /* Status.swift in Sources */,
+				65BD0BC927B12C3800A063F5 /* Peer.swift in Sources */,
 				65A58C47278F107A00F73E40 /* PongMessage.swift in Sources */,
 				65DD5DD1277C63DD002C9CA0 /* TransactionOutput.swift in Sources */,
 				65DD5F502785A3DB002C9CA0 /* OPCode+Static.swift in Sources */,
@@ -997,6 +1027,7 @@
 				65DD5F3427857B3A002C9CA0 /* OP_FROMALTSTACK.swift in Sources */,
 				657BD5732779AF4000B8E0D5 /* PrivateKey.swift in Sources */,
 				65A58C43278EBF8B00F73E40 /* VerAckMessage.swift in Sources */,
+				65BD0C6727B25B1800A063F5 /* InventoryMessage.swift in Sources */,
 				65DD5DCD277C639A002C9CA0 /* Transaction.swift in Sources */,
 				65DD5E9727854469002C9CA0 /* OP_ADD.swift in Sources */,
 				65DD5ECC27854DDC002C9CA0 /* OP_RESERVED1.swift in Sources */,
@@ -1028,6 +1059,7 @@
 				657BD55027742D8700B8E0D5 /* Crypto.swift in Sources */,
 				65DD5F0D2785744C002C9CA0 /* OP_N.swift in Sources */,
 				65DD5F2627857A05002C9CA0 /* OP_2OVER.swift in Sources */,
+				65BD0C6527B258EE00A063F5 /* Inventory.swift in Sources */,
 				65DD5EF827857092002C9CA0 /* OP_VERIFY.swift in Sources */,
 				65DD5F3A27857C18002C9CA0 /* OP_OVER.swift in Sources */,
 				65DD5F24278579AB002C9CA0 /* OP_2DUP.swift in Sources */,

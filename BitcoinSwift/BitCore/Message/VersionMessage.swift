@@ -8,6 +8,9 @@
 import Foundation
 
 public struct VersionMessage {
+    
+    public static let command = "version"
+    
     public let version: Int32
     public let services: UInt64
     public let timestamp: Int64

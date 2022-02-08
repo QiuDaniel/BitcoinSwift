@@ -9,6 +9,8 @@ import Foundation
 
 public struct PongMessage {
     
+    public static let command = "pong"
+    
     public let nonce: UInt64
     
     func serialize() -> Data {

@@ -9,6 +9,8 @@ import Foundation
 
 public struct GetHeadersMessage {
     
+    public static let command = "getheaders"
+    
     public let version: UInt32
     public let numHashes: Int
     public let startBlock: Data
