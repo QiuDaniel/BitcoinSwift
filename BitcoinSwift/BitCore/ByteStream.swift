@@ -56,6 +56,14 @@ extension ByteStream {
         return VarInt(length)
     }
     
+    func read(_ type: VarString.Type) -> VarString {
+        let length = read(VarInt.self).underlyingValue
+        let size = Int(length)
+        let value = data[offset..<(offset + size)].to(String.self)
+        offset += size
+        return VarString(value)
+    }
+    
     func read(_ type: Data.Type, count: Int) -> Data {
         let value = data[offset..<(offset + count)]
         offset += count

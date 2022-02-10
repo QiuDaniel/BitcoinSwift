@@ -11,22 +11,28 @@ public protocol PeerDelegate: AnyObject {
     func peerDidConnect()
     func peerDidDisconnect()
     func peer(_ peer: Peer, didReceiveVersionMessage message: VersionMessage)
+    func peer(_ peer: Peer, didReceiveAddressMessage message: AddressMessage)
     func peer(_ peer: Peer, didReceiveGetDataMessage message: GetDataMessage)
     func peer(_ peer: Peer, didReceiveInventoryMessage message: InventoryMessage)
     func peer(_ peer: Peer, didReceiveBlockMessage message: BlockMessage)
+    func peer(_ peer: Peer, didReceiveHeadersMessage message: HeadersMessage)
     func peer(_ peer: Peer, didReceiveMerkleBlock block: MerkleBlock, hash: Data)
     func peer(_ peer: Peer, didReceiveTransaction tx: Transaction)
+    func peer(_ peer: Peer, didReceiveRejectMessage message: RejectMessage)
 }
 
 extension PeerDelegate {
     public func peerDidConnect() {}
     public func peerDidDisconnect() {}
     public func peer(_ peer: Peer, didReceiveVersionMessage message: VersionMessage) {}
+    public func peer(_ peer: Peer, didReceiveAddressMessage message: AddressMessage) {}
     public func peer(_ peer: Peer, didReceiveGetDataMessage message: GetDataMessage) {}
     public func peer(_ peer: Peer, didReceiveInventoryMessage message: InventoryMessage) {}
     public func peer(_ peer: Peer, didReceiveBlockMessage message: BlockMessage) {}
+    public func peer(_ peer: Peer, didReceiveHeadersMessage message: HeadersMessage) {}
     public func peer(_ peer: Peer, didReceiveMerkleBlock block: MerkleBlock, hash: Data) {}
     public func peer(_ peer: Peer, didReceiveTransaction tx: Transaction) {}
+    public func peer(_ peer: Peer, didReceiveRejectMessage message: RejectMessage) {}
 }
 
 private let protocolVersion: Int32 = 70_015
@@ -127,8 +133,10 @@ public class Peer: NSObject {
         }
     }
     
-    public func startSync(filters: [Data] = [], latestBlock: Data) {
-        self.latestBlock = latestBlock
+    public func startSync(filters: [Data] = [], latestBlock: Data? = nil, isSPV: Bool = false) {
+        if latestBlock != nil {
+            self.latestBlock = latestBlock!
+        }
         context.isSyncing = true
         if !context.sentFilterLoad {
             sendFilterLoadMessage(filters)
@@ -138,7 +146,11 @@ public class Peer: NSObject {
                 context.sentMemPool = true
             }
         }
-        
+        sendGetBlocksMessage(isHeader: isSPV)
+    }
+    
+    public func sendTransaction(_ tx: Transaction) {
+        sendTransactionInventory(tx)
     }
 }
 
@@ -171,7 +183,10 @@ extension Peer: StreamDelegate {
         case _ as OutputStream:
             switch eventCode {
             case .hasSpaceAvailable:
-                "11111"
+                if !context.sentVersion {
+                    sendVersionMessage()
+                    context.sentVersion = true
+                }
             case .errorOccurred:
                 if verbose {
                     log("socket error occurred")
@@ -194,12 +209,64 @@ extension Peer: StreamDelegate {
 extension Peer {
     
     func readAvailableStream(_ stream: InputStream) {
-        
+        let buffer = UnsafeMutablePointer<UInt8>.allocate(capacity: bufferSize)
+        defer { buffer.deallocate() }
+        while stream.hasBytesAvailable {
+            let numberOfBytesRead = stream.read(buffer, maxLength: bufferSize)
+            if numberOfBytesRead <= 0 {
+                if stream.streamError != nil {
+                    break
+                }
+            } else {
+                context.packets += Data(bytesNoCopy: buffer, count: numberOfBytesRead, deallocator: .none)
+            }
+        }
+        while context.packets.count >= NetworkEnvelope.minimumLength {
+            guard let envelope = try? NetworkEnvelope.parse(ByteStream(context.packets)) else {
+                return
+            }
+            autoreleasepool {
+                context.packets = Data(context.packets.dropFirst(NetworkEnvelope.minimumLength + envelope.payload.count))
+                switch envelope.command {
+                case VersionMessage.command:
+                    handleVersionMessage(envelope.payload)
+                case VerAckMessage.command:
+                    handleVerackMessage(envelope.payload)
+                case AddressMessage.command:
+                    handleAddressMessage(envelope.payload)
+                case InventoryMessage.command:
+                    handleInventoryMessage(envelope.payload)
+                case GetDataMessage.command:
+                    handleGetDataMessage(envelope.payload)
+                case "notfound":
+                    // notfound is a response to a getdata, sent if any requested data items could not be relayed, for example, because the requested transaction was not in the memory pool or relay set.
+                    if verbose {
+                        log("not found when send getdata message")
+                    }
+                    break
+                case HeadersMessage.command:
+                    #warning("start parse header")
+                    print("start parse header")
+                    handleHeadersMessage(envelope.payload)
+                case BlockMessage.command:
+                    handleBlockMessage(envelope.payload)
+                case "tx":
+                    handleTransaction(envelope.payload)
+                case PingMessage.command:
+                    handlePingMessage(envelope.payload)
+                case "merkleblock":
+                    handleMerkleBlockMessage(envelope.payload)
+                case RejectMessage.command:
+                    handleRejectMessage(envelope.payload)
+                default:
+                    break
+                }
+            }
+        }
     }
     
     func sendVersionMessage() {
-        #warning("userAgent use BitcoinSwift")
-        let version = VersionMessage(nonce: 0, userAgent: "/BitcoinKit:1.0.2/", latestBlock: -1)
+        let version = VersionMessage(nonce: 0, userAgent: "/BitcoinSwift:0.0.1/", latestBlock: 0)
         let payload = version.serialaize()
         let envelope = NetworkEnvelope(command: VersionMessage.command, payload: payload, network: network)
         send(envelope)
@@ -231,11 +298,17 @@ extension Peer {
         send(envelope)
     }
     
-    func sendGetBlocksMessage() {
+    func sendGetBlocksMessage(isHeader: Bool = false) {
         let blockLocator = latestBlock
-        let getBlocks = GetBlocksMessage(version: UInt32(protocolVersion), hashCount: 1, blockLocator: blockLocator, hashStop: Data(count: 32))
-        let payload = getBlocks.serialize()
-        let envelope = NetworkEnvelope(command: GetBlocksMessage.command, payload: payload, network: network)
+        let payload: Data
+        if isHeader {
+            let message = GetHeadersMessage(startBlock: blockLocator)
+            payload = message.serialize()
+        } else {
+            let message = GetBlocksMessage(version: UInt32(protocolVersion), hashCount: 1, blockLocator: blockLocator, hashStop: Data(count: 32))
+            payload = message.serialize()
+        }
+        let envelope = NetworkEnvelope(command: isHeader ? GetHeadersMessage.command: GetBlocksMessage.command, payload: payload, network: network)
         send(envelope)
     }
     
@@ -304,7 +377,13 @@ extension Peer {
     }
     
     func handleAddressMessage(_ payload: Data) {
-        
+        let message = AddressMessage.parse(ByteStream(payload))
+        if verbose {
+            log("got addr with \(message.addresses.count) address(es)")
+        }
+        if let delegate = delegate {
+            delegate.peer(self, didReceiveAddressMessage: message)
+        }
     }
     
     func handleGetDataMessage(_ payload: Data) {
@@ -362,6 +441,19 @@ extension Peer {
         }
     }
     
+    func handleHeadersMessage(_ payload: Data) {
+        guard let message = try? HeadersMessage.parse(ByteStream(payload)) else {
+            return
+        }
+        if let delegate = delegate {
+            delegate.peer(self, didReceiveHeadersMessage: message)
+        }
+        for header in message.headers where header.prevBlock == latestBlock {
+            latestBlock = header.blockHash
+            sendGetBlocksMessage(isHeader: true)
+        }
+    }
+    
     func handleMerkleBlockMessage(_ payload: Data) {
         let merkleBlock = MerkleBlock.parse(payload)
         let hash256 = Crypto.hash256(payload.prefix(80))
@@ -393,5 +485,15 @@ extension Peer {
             log("got ping")
         }
         sendPongMessage(pongMessage)
+    }
+    
+    func handleRejectMessage(_ payload: Data) {
+        let reject = RejectMessage.parse(ByteStream(payload))
+        if verbose {
+            log("rejected \(reject.message) code: 0x\(String(reject.code, radix: 16)) reason: \(reject.reason), data: \(reject.hash.hex)")
+        }
+        if let delegate = delegate {
+            delegate.peer(self, didReceiveRejectMessage: reject)
+        }
     }
 }

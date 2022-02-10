@@ -8,6 +8,9 @@
 import Foundation
 
 public struct BlockMessage {
+    
+    public static let command = "block"
+    
     public let block: Block
     public let txs: [Transaction]
     

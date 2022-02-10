@@ -21,7 +21,7 @@ public struct VersionMessage {
     public let latestBlock: Int32
     public let relay: Bool
     
-    init(version: Int32 = 70015, services: UInt64 = 0, timestamp: Int64? = nil, receiverAddress: NetworkAddress = .default, senderAddress: NetworkAddress = .default, nonce: UInt64? = nil, userAgent: String = "/programmingbitcoin:0.1/", latestBlock: Int32 = 0, relay: Bool = false) {
+    init(version: Int32 = 70015, services: UInt64 = 0, timestamp: Int64? = nil, receiverAddress: NetworkAddress = .default, senderAddress: NetworkAddress = .default, nonce: UInt64? = nil, userAgent: String = "/BitcoinSwift:0.0.1/", latestBlock: Int32 = 0, relay: Bool = false) {
         self.version = version
         self.services = services
         self.timestamp = timestamp == nil ? Int64(Date().timeIntervalSince1970) : timestamp!

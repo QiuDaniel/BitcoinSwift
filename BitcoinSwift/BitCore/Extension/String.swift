@@ -24,23 +24,6 @@ extension String {
     }
 }
 
-extension String: BinaryConvertible {
-    
-    public var data: Data {
-        guard let encodedData = self.data(using: .utf8, allowLossyConversion: true) else {
-            incorrectImplementation("Should always be able to encode string to data")
-        }
-        return encodedData
-    }
-    
-    func toData(encodingForced: String.Encoding = .default) -> Data {
-        guard let encodedData = self.data(using: encodingForced) else {
-            incorrectImplementation("Should always be able to encode string to data")
-        }
-        return encodedData
-    }
-}
-
 public extension String.Encoding {
     static var `default`: String.Encoding {
         return .ascii
