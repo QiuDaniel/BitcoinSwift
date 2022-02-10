@@ -8,8 +8,8 @@
 import Foundation
 
 public protocol PeerDelegate: AnyObject {
-    func peerDidConnect()
-    func peerDidDisconnect()
+    func peerDidConnect(_ peer: Peer)
+    func peerDidDisconnect(_ peer: Peer)
     func peer(_ peer: Peer, didReceiveVersionMessage message: VersionMessage)
     func peer(_ peer: Peer, didReceiveAddressMessage message: AddressMessage)
     func peer(_ peer: Peer, didReceiveGetDataMessage message: GetDataMessage)
@@ -22,8 +22,8 @@ public protocol PeerDelegate: AnyObject {
 }
 
 extension PeerDelegate {
-    public func peerDidConnect() {}
-    public func peerDidDisconnect() {}
+    public func peerDidConnect(_ peer: Peer) {}
+    public func peerDidDisconnect(_ peer: Peer) {}
     public func peer(_ peer: Peer, didReceiveVersionMessage message: VersionMessage) {}
     public func peer(_ peer: Peer, didReceiveAddressMessage message: AddressMessage) {}
     public func peer(_ peer: Peer, didReceiveGetDataMessage message: GetDataMessage) {}
@@ -126,7 +126,7 @@ public class Peer: NSObject {
         readStream = nil
         writeStream = nil
         if let delegate = delegate {
-            delegate.peerDidDisconnect()
+            delegate.peerDidDisconnect(self)
         }
         if verbose {
             log("disconnected")
@@ -372,7 +372,7 @@ extension Peer {
         }
         context.gotVerack = true
         if let delegate = delegate {
-            delegate.peerDidConnect()
+            delegate.peerDidConnect(self)
         }
     }
     
